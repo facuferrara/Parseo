@@ -13,6 +13,11 @@ Posicionar tortuga:
 - setx <exp>
 - sety <exp>
 
+Obtener posicion tortuga:
+- xcor
+- ycor
+- pos
+
 Centrar tortuga:
 - home 
 
