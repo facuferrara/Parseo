@@ -2,7 +2,7 @@
 ```
 Mover tortuga:
 - foward <exp>
-- backward <exp>
+- back <exp>
 
 Rotar tortuga:
 - left <exp>
