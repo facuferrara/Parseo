@@ -61,3 +61,23 @@ Listas de palabras o listas, separadas por espacion en blanco:
 Bloques comandos:
 - [ comandos...]
 ```
+
+### Ejemplo de programa
+
+```
+
+to cuadrado :largo
+  repeat 4 [ forward :largo right 90 ]
+end
+
+
+
+clearscreen
+penup
+forward 300
+pendown
+cuadrado 100
+home
+if xcor < 100 [ hideturtle ]
+
+```
