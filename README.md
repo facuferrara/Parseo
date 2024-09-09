@@ -1,4 +1,4 @@
-Utilizando Python y PLY (Python Lex-Yacc), vamos a descomponer el proceso en varias etapas. El objetivo es que entiendas cómo estructurar el lexer y parser, y cómo implementar las funcionalidades solicitadas en tu lenguaje.
+Utilizando Python y PLY (Python Lex-Yacc), vamos a descomponer el proceso en varias etapas. El objetivo es entiender cómo estructurar el lexer y parser, y cómo implementar las funcionalidades del lenguaje.
 
 
 # Parseo Logo UNaHur
