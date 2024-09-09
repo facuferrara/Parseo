@@ -1,3 +1,6 @@
+# Utilizando Python y PLY (Python Lex-Yacc), vamos a descomponer el proceso en varias etapas. El objetivo es que entiendas cómo estructurar el lexer y parser, y cómo implementar las funcionalidades solicitadas en tu lenguaje.
+
+
 # Parseo Logo UNaHur
 ```
 Mover tortuga:
