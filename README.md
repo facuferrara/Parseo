@@ -1,4 +1,4 @@
-# Utilizando Python y PLY (Python Lex-Yacc), vamos a descomponer el proceso en varias etapas. El objetivo es que entiendas cómo estructurar el lexer y parser, y cómo implementar las funcionalidades solicitadas en tu lenguaje.
+Utilizando Python y PLY (Python Lex-Yacc), vamos a descomponer el proceso en varias etapas. El objetivo es que entiendas cómo estructurar el lexer y parser, y cómo implementar las funcionalidades solicitadas en tu lenguaje.
 
 
 # Parseo Logo UNaHur
@@ -84,3 +84,23 @@ home
 if xcor < 100 [ hideturtle ]
 
 ```
+
+
+# Definición del Lexer
+
+El lexer se encarga de dividir el código fuente en tokens. Cada token representa una unidad mínima del lenguaje, como comandos, operadores, números, identificadores, etc.
+
+
+
+# Definición del Parser
+
+El parser usa los tokens generados por el lexer para construir una estructura jerárquica que representa la lógica del programa, comúnmente conocida como Abstract Syntax Tree (AST).
+
+
+
+# Definición del AST
+
+El árbol sintáctico abstracto (AST) es una representación de las instrucciones del programa. Este se construye durante el análisis sintáctico y se ejecuta en la etapa de interpretación.
+
+
+# Implementación JFLAP
