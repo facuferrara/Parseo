@@ -1,3 +1,6 @@
+#Definir Tokens, para identificar cada palabra del programa.
+
+
 # Tamaño de la cuadrícula (puedes cambiar el tamaño según tus necesidades)
 grid_size = 20
 
