@@ -1,106 +1,178 @@
-Utilizando Python y PLY (Python Lex-Yacc), vamos a descomponer el proceso en varias etapas. El objetivo es entiender cómo estructurar el lexer y parser, y cómo implementar las funcionalidades del lenguaje.
+# Parseo y Generación de Código
+
+## Trabajo Práctico
+
+**Profesor:** Mag. Ing. Pablo Pandolfo
+
+**Alumnos:**
+- Ferrara Facundo Matias
+- Origlia Pablo
+
+**Año:** 2024
+
+---
+
+## Índice
+
+- [Parseo y Generación de Código](#parseo-y-generación-de-código)
+  - [Trabajo Práctico](#trabajo-práctico)
+  - [Índice](#índice)
+  - [Objetivo](#objetivo)
+  - [Descripción](#descripción)
+  - [Repositorio](#repositorio)
+  - [Definición del Lenguaje](#definición-del-lenguaje)
+  - [Implementación](#implementación)
+    - [Scanner](#scanner)
+    - [Parser](#parser)
+    - [Acciones Semánticas](#acciones-semánticas)
+  - [Casos de Prueba Automatizados](#casos-de-prueba-automatizados)
+  - [Conclusiones](#conclusiones)
+  - [Versión PYLogo](#versión-pylogo)
+  - [Acciones disponibles](#acciones-disponibles)
+  - [Ejemplo de programa](#ejemplo-de-programa)
+
+---
+
+## Objetivo
+
+Diseñar y desarrollar un compilador de una versión reducida del lenguaje de programación inspirado en LOGO, utilizando las herramientas de análisis léxico y sintáctico proporcionadas por PLY (Python Lex-Yacc).
+
+## Descripción
+
+El lenguaje PYLogo está inspirado en LOGO y está diseñado para enseñar conceptos básicos de programación y control de movimiento gráfico en una interfaz simple. Permite a los usuarios controlar una "tortuga" que dibuja gráficos mediante comandos como avanzar, girar y levantar o bajar el lápiz. El lenguaje es fácil de entender y sigue un enfoque basado en acciones que dirigen el comportamiento de la tortuga en un plano de coordenadas.
+
+## Repositorio
+
+1. Clonar el Proyecto  
+   Primero, asegúrate de tener git instalado. Si no lo tienes, puedes instalarlo siguiendo las instrucciones de git-scm.com.  
+   Luego, para clonar un repositorio de GitHub (o cualquier otro repositorio Git), ejecuta el siguiente comando en tu terminal:
+   ```bash
+   git clone(https://github.com/facuferrara/Parseo.git)
 
 
-# Parseo Logo UNaHur
-```
-Mover tortuga:
-- foward <exp>
-- back <exp>
+2. Navegar al Directorio del Proyecto  
+Después de clonar el proyecto, entra en el directorio del proyecto con el siguiente comando:
 
-Rotar tortuga:
-- left <exp>
-- right <exp>
+cd proyecto
 
-Posicionar tortuga:
-- setpos [<exp> <exp>]
-- setx <exp>
-- sety <exp>
+3. Crear y Configurar los Archivos  
+Una vez en el directorio, puedes proceder a crear los archivos `lexer.py` y `parser.py` con el código que mencioné antes:
 
-Obtener posicion tortuga:
-- xcor
-- ycor
-- pos
+- `lexer.py`: Contiene el análisis léxico.
+- `parser.py`: Contiene el análisis sintáctico y el programa principal.
 
-Centrar tortuga:
-- home 
+Asegúrate de tener las dependencias necesarias instaladas, como PLY y Tkinter.
 
-Mostrar/Ocultar tortuga:
-- showturtle
-- hideturtle
+4. Instalar Dependencias  
+El proyecto utiliza Python y tiene un archivo `requirements.txt`, puedes instalar las dependencias con:
 
-Limpiar pantalla:
-- clean
+pip install -r requirements.txt
 
-Limpiar pantalla y centrar tortuga:
-- clearscreen
-
-Mostrar:
-- show <exp>
-
-Subir/Bajar lapiz:
-- pendown
-- penup
-
-Ciclos:
-- repeat <expr> [ comandos... ]
-- while <expr> [ comandos...]
-
-Bifurcaciones:
-- if <expr> [ comandos... ]
-- ifelse <expr> [ comandos... ] [ comandos... ]
-
-Procedimiento:
-- to <proc_name> <inputs> <comandos> end
-
-Asignacion_
-- name <expr> varname
-
-Referencia:
-- :varname
-
-Listas de palabras o listas, separadas por espacion en blanco:
-- [ word ... ]
-
-Bloques comandos:
-- [ comandos...]
-```
-
-### Ejemplo de programa
-
-```
-
-to cuadrado :largo
-  repeat 4 [ forward :largo right 90 ]
-end
+5. Ejecutar el Programa  
+Una vez todo esté en su lugar, puedes ejecutar el archivo `parser.py`:
 
 
+## Definición del Lenguaje
 
-clearscreen
-penup
-forward 300
-pendown
-cuadrado 100
-home
-if xcor < 100 [ hideturtle ]
+PYLogo es un lenguaje de programación basado en comandos simples que permite a los usuarios interactuar con una "tortuga" para crear gráficos en un plano de coordenadas.
 
-```
+## Implementación
 
+### Scanner
 
-# Definición del Lexer
+Se ha implementado un scanner que analiza el código fuente de PYLogo, identificando los diferentes tokens que se utilizan en el lenguaje.
 
-El lexer se encarga de dividir el código fuente en tokens. Cada token representa una unidad mínima del lenguaje, como comandos, operadores, números, identificadores, etc.
+### Parser
 
+El parser se encarga de analizar la estructura del código PYLogo, validando que los comandos sigan la gramática definida.
 
+### Acciones Semánticas
 
-# Definición del Parser
+Las acciones semánticas se ejecutan durante el proceso de análisis, permitiendo que los comandos tengan un efecto en la "tortuga" y en el entorno gráfico.
 
-El parser usa los tokens generados por el lexer para construir una estructura jerárquica que representa la lógica del programa, comúnmente conocida como Abstract Syntax Tree (AST).
+## Casos de Prueba Automatizados
 
+Se han creado casos de prueba automatizados para validar el correcto funcionamiento del scanner, parser y las acciones semánticas. Esto incluye pruebas unitarias y pruebas de integración.
 
+## Conclusiones
 
-# Definición del AST
+Este trabajo práctico ha permitido comprender mejor los conceptos de diseño e implementación de un lenguaje de programación, así como la importancia de un análisis léxico y sintáctico eficaz.
 
-El árbol sintáctico abstracto (AST) es una representación de las instrucciones del programa. Este se construye durante el análisis sintáctico y se ejecuta en la etapa de interpretación.
+## Versión PYLogo
 
+La versión PYLogo consiste en un conjunto limitado de comandos que incluyen acciones básicas como avanzar (AVANZA), girar (GIRA_IZQUIERDA, GIRA_DERECHA) y controlar el estado del lápiz (LEVANTA_PLUMA, BAJA_PLUMA). Esto permite a los usuarios crear gráficos básicos sin necesidad de comandos avanzados.
 
-# Implementación JFLAP
+Ejemplo:
+
+Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA(); AVANZA(50); END
+
+## Acciones disponibles
+
+- Mover tortuga:
+  - `forward <exp>`
+  - `back <exp>`
+  
+- Rotar tortuga:
+  - `left <exp>`
+  - `right <exp>`
+  
+- Posicionar tortuga:
+  - `setpos [<exp> <exp>]`
+  - `setx <exp>`
+  - `sety <exp>`
+  
+- Obtener posición tortuga:
+  - `xcor`
+  - `ycor`
+  - `pos`
+  
+- Centrar tortuga:
+  - `home`
+  
+- Mostrar/Ocultar tortuga:
+  - `showturtle`
+  - `hideturtle`
+  
+- Limpiar pantalla:
+  - `clean`
+  
+- Limpiar pantalla y centrar tortuga:
+  - `clearscreen`
+  
+- Mostrar:
+  - `show <exp>`
+  
+- Subir/Bajar lápiz:
+  - `pendown`
+  - `penup`
+  
+- Ciclos:
+  - `repeat <expr> [ comandos... ]`
+  - `while <expr> [ comandos... ]`
+  
+- Bifurcaciones:
+  - `if <expr> [ comandos... ]`
+  - `ifelse <expr> [ comandos... ] [ comandos... ]`
+  
+- Procedimiento:
+  - `to <proc_name> <inputs> <comandos> end`
+  
+- Asignación:
+  - `name <expr> varname`
+  
+- Referencia:
+  - `:varname`
+  
+- Listas de palabras o listas, separadas por espacio en blanco:
+  - `[ word ... ]`
+  
+- Bloques comandos:
+  - `[ comandos...]`
+
+## Ejemplo de programa
+
+to cuadrado
+repeat 4 [ forward
+right 90 ] end
+
+clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go

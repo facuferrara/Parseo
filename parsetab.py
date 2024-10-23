@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AVANZA GIRA_DERECHA GIRA_IZQUIERDA LBRACKET NUMERO RBRACKET REPITEinstrucciones : instruccion\n                     | instrucciones instruccioninstruccion : AVANZA NUMERO\n                   | GIRA_IZQUIERDA NUMERO\n                   | GIRA_DERECHA NUMEROinstruccion : REPITE NUMERO LBRACKET instrucciones RBRACKET'
+_lr_signature = 'AVANZA GIRA_DERECHA GIRA_IZQUIERDA LBRACKET NUMERO RBRACKET REPITEinstrucciones : instruccion\n                         | instrucciones instruccioninstruccion : AVANZA NUMERO\n                       | GIRA_IZQUIERDA NUMERO\n                       | GIRA_DERECHA NUMEROinstruccion : REPITE NUMERO LBRACKET instrucciones RBRACKET'
     
 _lr_action_items = {'AVANZA':([0,1,2,7,8,9,10,12,13,14,],[3,3,-1,-2,-3,-4,-5,3,3,-6,]),'GIRA_IZQUIERDA':([0,1,2,7,8,9,10,12,13,14,],[4,4,-1,-2,-3,-4,-5,4,4,-6,]),'GIRA_DERECHA':([0,1,2,7,8,9,10,12,13,14,],[5,5,-1,-2,-3,-4,-5,5,5,-6,]),'REPITE':([0,1,2,7,8,9,10,12,13,14,],[6,6,-1,-2,-3,-4,-5,6,6,-6,]),'$end':([1,2,7,8,9,10,14,],[0,-1,-2,-3,-4,-5,-6,]),'RBRACKET':([2,7,8,9,10,13,14,],[-1,-2,-3,-4,-5,14,-6,]),'NUMERO':([3,4,5,6,],[8,9,10,11,]),'LBRACKET':([11,],[12,]),}
 
@@ -27,10 +27,10 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> instrucciones","S'",1,None,None,None),
-  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones','lexysint.py',52),
-  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones','lexysint.py',53),
-  ('instruccion -> AVANZA NUMERO','instruccion',2,'p_instruccion','lexysint.py',61),
-  ('instruccion -> GIRA_IZQUIERDA NUMERO','instruccion',2,'p_instruccion','lexysint.py',62),
-  ('instruccion -> GIRA_DERECHA NUMERO','instruccion',2,'p_instruccion','lexysint.py',63),
-  ('instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET','instruccion',5,'p_instruccion_repite','lexysint.py',73),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones','parser.py',10),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones','parser.py',11),
+  ('instruccion -> AVANZA NUMERO','instruccion',2,'p_instruccion','parser.py',19),
+  ('instruccion -> GIRA_IZQUIERDA NUMERO','instruccion',2,'p_instruccion','parser.py',20),
+  ('instruccion -> GIRA_DERECHA NUMERO','instruccion',2,'p_instruccion','parser.py',21),
+  ('instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET','instruccion',5,'p_instruccion_repite','parser.py',34),
 ]
