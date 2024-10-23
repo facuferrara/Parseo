@@ -24,6 +24,7 @@
   - [Implementación](#implementación)
     - [Scanner](#scanner)
     - [Parser](#parser)
+    - [Main (main.py)](#main-mainpy)
     - [Acciones Semánticas](#acciones-semánticas)
   - [Casos de Prueba Automatizados](#casos-de-prueba-automatizados)
   - [Conclusiones](#conclusiones)
@@ -82,9 +83,17 @@ PYLogo es un lenguaje de programación basado en comandos simples que permite a 
 
 Se ha implementado un scanner que analiza el código fuente de PYLogo, identificando los diferentes tokens que se utilizan en el lenguaje.
 
+Este archivo se encarga del análisis léxico del lenguaje PYLogo. Define los diferentes tokens que componen el lenguaje, como comandos y identificadores, utilizando la biblioteca PLY para crear un lexer que identifica y clasifica los elementos del código fuente. El lexer ignora espacios y saltos de línea, y genera errores para caracteres no válidos.
+
 ### Parser
 
 El parser se encarga de analizar la estructura del código PYLogo, validando que los comandos sigan la gramática definida.
+
+El parser es responsable del análisis sintáctico del lenguaje PYLogo. Utiliza la biblioteca PLY para definir la gramática del lenguaje, validando que los comandos en el código fuente cumplan con las reglas sintácticas. El parser organiza las estructuras de los comandos y controla la correcta jerarquía de ejecución de las instrucciones.
+
+### Main (main.py)
+
+Este archivo contiene el programa principal que integra el lexer y el parser. Se encarga de recibir el código fuente de PYLogo, pasar el texto a través del lexer para realizar el análisis léxico, y luego utilizar el parser para verificar la estructura y ejecutar las instrucciones correspondientes. Además, puede incluir la inicialización de la interfaz gráfica donde la tortuga ejecuta los comandos y se visualizan los gráficos generados.
 
 ### Acciones Semánticas
 
@@ -172,7 +181,8 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
 ## Ejemplo de programa
 
 to cuadrado
-repeat 4 [ forward
-right 90 ] end
+repeat 4 [ forwardright 90 ] end
+
+clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
 
 clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
