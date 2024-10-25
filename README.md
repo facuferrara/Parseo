@@ -52,7 +52,6 @@ El lenguaje PYLogo está inspirado en LOGO y está diseñado para enseñar conce
   git clone https://github.com/facuferrara/Parseo.git
   ```
 
-
 2. Navegar al Directorio del Proyecto  
 Después de clonar el proyecto, entra en el directorio del proyecto con el siguiente comando:
 
@@ -75,7 +74,6 @@ pip install -r requirements.txt
 
 5. Ejecutar el Programa  
 Una vez todo esté en su lugar, puedes ejecutar el archivo `parser.py`:
-
 
 ## Definición del Lenguaje
 
