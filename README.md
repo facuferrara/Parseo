@@ -48,13 +48,15 @@ El lenguaje PYLogo está inspirado en LOGO y está diseñado para enseñar conce
    Primero, asegúrate de tener git instalado. Si no lo tienes, puedes instalarlo siguiendo las instrucciones de git-scm.com.  
    Luego, para clonar un repositorio de GitHub (o cualquier otro repositorio Git), ejecuta el siguiente comando en tu terminal:
    ```bash
-   git clone(https://github.com/facuferrara/Parseo.git)
+   git clone https://github.com/facuferrara/Parseo.git
+   ```
 
 
 2. Navegar al Directorio del Proyecto  
 Después de clonar el proyecto, entra en el directorio del proyecto con el siguiente comando:
-
+```bash
 cd proyecto
+```
 
 3. Crear y Configurar los Archivos  
 Una vez en el directorio, puedes proceder a crear los archivos `lexer.py` y `parser.py` con el código que mencioné antes:
