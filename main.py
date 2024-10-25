@@ -1,3 +1,4 @@
+import argparse
 import tkinter as tk
 from parser import build_parser  # Importa la función que construye el parser
 from lexer import lexer  # Importa el lexer desde lexer.py
@@ -35,17 +36,25 @@ def girar_derecha(grados):
 # Construir el parser con las funciones de movimiento
 parser = build_parser(avanzar, girar_izquierda, girar_derecha)
 
-# Ejemplo de código de prueba
-codigo = '''
-AVANZA 100
-GIRA_IZQUIERDA 90
-REPITE 4 [
-    AVANZA 50
-    GIRA_DERECHA 90
-]
-'''
+#tendria que abrir el archivo ejemplo.lg y cargar el codigo en la variable codigo
 
-# Utiliza el lexer y el parser para procesar el código
+cli = argparse.ArgumentParser()
+cli.add_argument("-v", "--verbose", help="Mostrar información de depuración", action="store_true")
+cli.add_argument("-f", "--file", help="Nombre de archivo a procesar")
+args = cli.parse_args()
+ 
+# Aquí procesamos lo que se tiene que hacer con cada argumento
+if args.verbose:
+    print ("depuración activada!!!")
+ 
+if args.file:
+    # print ("El nombre de archivo a procesar es: ", args.file)
+    
+    with open(args.file, encoding="utf8") as file:  
+        codigo = file.read()
+    # print(codigo)
+    
+#Utiliza el lexer y el parser para procesar el código
 resultado = parser.parse(codigo, lexer=lexer)
 
 # Ejecuta las acciones generadas por el parser
