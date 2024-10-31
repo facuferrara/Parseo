@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AVANZA GIRA_DERECHA GIRA_IZQUIERDA LBRACKET NUMERO RBRACKET REPITEinstrucciones : instruccion\n                         | instrucciones instruccioninstruccion : AVANZA NUMERO\n                       | GIRA_IZQUIERDA NUMERO\n                       | GIRA_DERECHA NUMEROinstruccion : REPITE NUMERO LBRACKET instrucciones RBRACKET'
+_lr_signature = 'AVANZA BAJA_PLUMA GIRA_DERECHA GIRA_IZQUIERDA LBRACKET LEVANTA_PLUMA NUMERO RBRACKET REPITEinstrucciones : instruccion\n                         | instrucciones instruccioninstruccion : AVANZA NUMERO\n                       | GIRA_IZQUIERDA NUMERO\n                       | GIRA_DERECHA NUMERO\n                       | LEVANTA_PLUMA\n                       | BAJA_PLUMAinstruccion : REPITE NUMERO LBRACKET instrucciones RBRACKET'
     
-_lr_action_items = {'AVANZA':([0,1,2,7,8,9,10,12,13,14,],[3,3,-1,-2,-3,-4,-5,3,3,-6,]),'GIRA_IZQUIERDA':([0,1,2,7,8,9,10,12,13,14,],[4,4,-1,-2,-3,-4,-5,4,4,-6,]),'GIRA_DERECHA':([0,1,2,7,8,9,10,12,13,14,],[5,5,-1,-2,-3,-4,-5,5,5,-6,]),'REPITE':([0,1,2,7,8,9,10,12,13,14,],[6,6,-1,-2,-3,-4,-5,6,6,-6,]),'$end':([1,2,7,8,9,10,14,],[0,-1,-2,-3,-4,-5,-6,]),'RBRACKET':([2,7,8,9,10,13,14,],[-1,-2,-3,-4,-5,14,-6,]),'NUMERO':([3,4,5,6,],[8,9,10,11,]),'LBRACKET':([11,],[12,]),}
+_lr_action_items = {'AVANZA':([0,1,2,6,7,9,10,11,12,14,15,16,],[3,3,-1,-6,-7,-2,-3,-4,-5,3,3,-8,]),'GIRA_IZQUIERDA':([0,1,2,6,7,9,10,11,12,14,15,16,],[4,4,-1,-6,-7,-2,-3,-4,-5,4,4,-8,]),'GIRA_DERECHA':([0,1,2,6,7,9,10,11,12,14,15,16,],[5,5,-1,-6,-7,-2,-3,-4,-5,5,5,-8,]),'LEVANTA_PLUMA':([0,1,2,6,7,9,10,11,12,14,15,16,],[6,6,-1,-6,-7,-2,-3,-4,-5,6,6,-8,]),'BAJA_PLUMA':([0,1,2,6,7,9,10,11,12,14,15,16,],[7,7,-1,-6,-7,-2,-3,-4,-5,7,7,-8,]),'REPITE':([0,1,2,6,7,9,10,11,12,14,15,16,],[8,8,-1,-6,-7,-2,-3,-4,-5,8,8,-8,]),'$end':([1,2,6,7,9,10,11,12,16,],[0,-1,-6,-7,-2,-3,-4,-5,-8,]),'RBRACKET':([2,6,7,9,10,11,12,15,16,],[-1,-6,-7,-2,-3,-4,-5,16,-8,]),'NUMERO':([3,4,5,8,],[10,11,12,13,]),'LBRACKET':([13,],[14,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'instrucciones':([0,12,],[1,13,]),'instruccion':([0,1,12,13,],[2,7,2,7,]),}
+_lr_goto_items = {'instrucciones':([0,14,],[1,15,]),'instruccion':([0,1,14,15,],[2,9,2,9,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,5 +32,7 @@ _lr_productions = [
   ('instruccion -> AVANZA NUMERO','instruccion',2,'p_instruccion','parser.py',19),
   ('instruccion -> GIRA_IZQUIERDA NUMERO','instruccion',2,'p_instruccion','parser.py',20),
   ('instruccion -> GIRA_DERECHA NUMERO','instruccion',2,'p_instruccion','parser.py',21),
-  ('instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET','instruccion',5,'p_instruccion_repite','parser.py',34),
+  ('instruccion -> LEVANTA_PLUMA','instruccion',1,'p_instruccion','parser.py',22),
+  ('instruccion -> BAJA_PLUMA','instruccion',1,'p_instruccion','parser.py',23),
+  ('instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET','instruccion',5,'p_instruccion_repite','parser.py',40),
 ]

@@ -35,8 +35,16 @@ def girar_derecha(grados):
     global angle
     angle = (angle - grados) % 360
 
+def levanta_pluma():
+    global lapiz_abajo
+    lapiz_abajo = False
+
+def baja_pluma():
+    global lapiz_abajo
+    lapiz_abajo = True
+
 # Construir el parser con las funciones de movimiento
-parser = build_parser(avanzar, girar_izquierda, girar_derecha)
+parser = build_parser(avanzar, girar_izquierda, girar_derecha, levanta_pluma, baja_pluma)
 
 cli = argparse.ArgumentParser(description='Un simple compilador de Logo.')
 cli.add_argument("-f", "--file", help="Nombre de archivo a procesar")

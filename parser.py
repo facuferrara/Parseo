@@ -2,7 +2,7 @@ import ply.yacc as yacc
 from lexer import tokens  # Importa los tokens desde lexer.py
 
 # Función para construir el parser y pasar las funciones de movimiento
-def build_parser(avanzar, girar_izquierda, girar_derecha):
+def build_parser(avanzar, girar_izquierda, girar_derecha, levanta_pluma, baja_pluma):
     # Definir las reglas gramaticales
 
     # Instrucciones (secuencia de instrucciones)
@@ -18,7 +18,9 @@ def build_parser(avanzar, girar_izquierda, girar_derecha):
     def p_instruccion(p):
         '''instruccion : AVANZA NUMERO
                        | GIRA_IZQUIERDA NUMERO
-                       | GIRA_DERECHA NUMERO'''
+                       | GIRA_DERECHA NUMERO
+                       | LEVANTA_PLUMA
+                       | BAJA_PLUMA'''
         if p[1] == 'AVANZA':
             distancia = p[2]
             p[0] = lambda: avanzar(distancia)
@@ -28,6 +30,10 @@ def build_parser(avanzar, girar_izquierda, girar_derecha):
         elif p[1] == 'GIRA_DERECHA':
             grados = p[2]
             p[0] = lambda: girar_derecha(grados)
+        elif p[1] == 'LEVANTA_PLUMA':
+            p[0] = lambda: levanta_pluma()
+        elif p[1] == 'BAJA_PLUMA':
+            p[0] = lambda: baja_pluma()            
 
     # Instrucción de repetición
     def p_instruccion_repite(p):

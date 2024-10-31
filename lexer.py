@@ -8,7 +8,9 @@ tokens = (
     'REPITE',
     'NUMERO',
     'LBRACKET',  # [
-    'RBRACKET'   # ]
+    'RBRACKET',  # ]
+    'LEVANTA_PLUMA',
+    'BAJA_PLUMA'
 )
 
 # Expresiones regulares para cada token
@@ -18,6 +20,8 @@ t_GIRA_DERECHA = r'GIRA_DERECHA'
 t_REPITE = r'REPITE'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
+t_LEVANTA_PLUMA = r'LEVANTA_PLUMA'
+t_BAJA_PLUMA = r'BAJA_PLUMA'
 
 # Definir el token para números
 def t_NUMERO(t):
