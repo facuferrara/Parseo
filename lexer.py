@@ -6,6 +6,7 @@ tokens = (
     'GIRA_IZQUIERDA',
     'GIRA_DERECHA',
     'REPITE',
+    'SI',
     'NUMERO',
     'LBRACKET',  # [
     'RBRACKET',  # ]
@@ -18,6 +19,7 @@ t_AVANZA = r'AVANZA'
 t_GIRA_IZQUIERDA = r'GIRA_IZQUIERDA'
 t_GIRA_DERECHA = r'GIRA_DERECHA'
 t_REPITE = r'REPITE'
+t_SI = r'SI'
 t_LBRACKET = r'\['
 t_RBRACKET = r'\]'
 t_LEVANTA_PLUMA = r'LEVANTA_PLUMA'

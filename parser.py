@@ -42,6 +42,13 @@ def build_parser(avanzar, girar_izquierda, girar_derecha, levanta_pluma, baja_pl
         instrucciones_a_repetir = p[4]  # Lista de acciones
         p[0] = lambda: [accion() for _ in range(repeticiones) for accion in instrucciones_a_repetir]
 
+    # Instrucción de condicional
+    def p_instruccion_condicional(p):
+        'instruccion : SI NUMERO LBRACKET instrucciones RBRACKET'
+        expresion = p[2]  # Expresion
+        instrucciones_condicionales = p[4]  # Lista de acciones
+        p[0] = lambda: [accion() for accion in instrucciones_condicionales if expresion==2]
+
     # Manejar errores sintácticos
     def p_error(p):
         print(f"Error de sintaxis en '{p.value}'")

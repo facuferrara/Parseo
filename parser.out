@@ -11,6 +11,7 @@ Rule 5     instruccion -> GIRA_DERECHA NUMERO
 Rule 6     instruccion -> LEVANTA_PLUMA
 Rule 7     instruccion -> BAJA_PLUMA
 Rule 8     instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET
+Rule 9     instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET
 
 Terminals, with rules where they appear
 
@@ -18,17 +19,18 @@ AVANZA               : 3
 BAJA_PLUMA           : 7
 GIRA_DERECHA         : 5
 GIRA_IZQUIERDA       : 4
-LBRACKET             : 8
+LBRACKET             : 8 9
 LEVANTA_PLUMA        : 6
-NUMERO               : 3 4 5 8
-RBRACKET             : 8
+NUMERO               : 3 4 5 8 9
+RBRACKET             : 8 9
 REPITE               : 8
+SI                   : 9
 error                : 
 
 Nonterminals, with rules where they appear
 
 instruccion          : 1 2
-instrucciones        : 2 8 0
+instrucciones        : 2 8 9 0
 
 Parsing method: LALR
 
@@ -43,6 +45,7 @@ state 0
     (6) instruccion -> . LEVANTA_PLUMA
     (7) instruccion -> . BAJA_PLUMA
     (8) instruccion -> . REPITE NUMERO LBRACKET instrucciones RBRACKET
+    (9) instruccion -> . SI NUMERO LBRACKET instrucciones RBRACKET
 
     AVANZA          shift and go to state 3
     GIRA_IZQUIERDA  shift and go to state 4
@@ -50,6 +53,7 @@ state 0
     LEVANTA_PLUMA   shift and go to state 6
     BAJA_PLUMA      shift and go to state 7
     REPITE          shift and go to state 8
+    SI              shift and go to state 9
 
     instrucciones                  shift and go to state 1
     instruccion                    shift and go to state 2
@@ -64,6 +68,7 @@ state 1
     (6) instruccion -> . LEVANTA_PLUMA
     (7) instruccion -> . BAJA_PLUMA
     (8) instruccion -> . REPITE NUMERO LBRACKET instrucciones RBRACKET
+    (9) instruccion -> . SI NUMERO LBRACKET instrucciones RBRACKET
 
     AVANZA          shift and go to state 3
     GIRA_IZQUIERDA  shift and go to state 4
@@ -71,8 +76,9 @@ state 1
     LEVANTA_PLUMA   shift and go to state 6
     BAJA_PLUMA      shift and go to state 7
     REPITE          shift and go to state 8
+    SI              shift and go to state 9
 
-    instruccion                    shift and go to state 9
+    instruccion                    shift and go to state 10
 
 state 2
 
@@ -84,6 +90,7 @@ state 2
     LEVANTA_PLUMA   reduce using rule 1 (instrucciones -> instruccion .)
     BAJA_PLUMA      reduce using rule 1 (instrucciones -> instruccion .)
     REPITE          reduce using rule 1 (instrucciones -> instruccion .)
+    SI              reduce using rule 1 (instrucciones -> instruccion .)
     $end            reduce using rule 1 (instrucciones -> instruccion .)
     RBRACKET        reduce using rule 1 (instrucciones -> instruccion .)
 
@@ -92,21 +99,21 @@ state 3
 
     (3) instruccion -> AVANZA . NUMERO
 
-    NUMERO          shift and go to state 10
+    NUMERO          shift and go to state 11
 
 
 state 4
 
     (4) instruccion -> GIRA_IZQUIERDA . NUMERO
 
-    NUMERO          shift and go to state 11
+    NUMERO          shift and go to state 12
 
 
 state 5
 
     (5) instruccion -> GIRA_DERECHA . NUMERO
 
-    NUMERO          shift and go to state 12
+    NUMERO          shift and go to state 13
 
 
 state 6
@@ -119,6 +126,7 @@ state 6
     LEVANTA_PLUMA   reduce using rule 6 (instruccion -> LEVANTA_PLUMA .)
     BAJA_PLUMA      reduce using rule 6 (instruccion -> LEVANTA_PLUMA .)
     REPITE          reduce using rule 6 (instruccion -> LEVANTA_PLUMA .)
+    SI              reduce using rule 6 (instruccion -> LEVANTA_PLUMA .)
     $end            reduce using rule 6 (instruccion -> LEVANTA_PLUMA .)
     RBRACKET        reduce using rule 6 (instruccion -> LEVANTA_PLUMA .)
 
@@ -133,6 +141,7 @@ state 7
     LEVANTA_PLUMA   reduce using rule 7 (instruccion -> BAJA_PLUMA .)
     BAJA_PLUMA      reduce using rule 7 (instruccion -> BAJA_PLUMA .)
     REPITE          reduce using rule 7 (instruccion -> BAJA_PLUMA .)
+    SI              reduce using rule 7 (instruccion -> BAJA_PLUMA .)
     $end            reduce using rule 7 (instruccion -> BAJA_PLUMA .)
     RBRACKET        reduce using rule 7 (instruccion -> BAJA_PLUMA .)
 
@@ -141,10 +150,17 @@ state 8
 
     (8) instruccion -> REPITE . NUMERO LBRACKET instrucciones RBRACKET
 
-    NUMERO          shift and go to state 13
+    NUMERO          shift and go to state 14
 
 
 state 9
+
+    (9) instruccion -> SI . NUMERO LBRACKET instrucciones RBRACKET
+
+    NUMERO          shift and go to state 15
+
+
+state 10
 
     (2) instrucciones -> instrucciones instruccion .
 
@@ -154,11 +170,12 @@ state 9
     LEVANTA_PLUMA   reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     BAJA_PLUMA      reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     REPITE          reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    SI              reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
     RBRACKET        reduce using rule 2 (instrucciones -> instrucciones instruccion .)
 
 
-state 10
+state 11
 
     (3) instruccion -> AVANZA NUMERO .
 
@@ -168,11 +185,12 @@ state 10
     LEVANTA_PLUMA   reduce using rule 3 (instruccion -> AVANZA NUMERO .)
     BAJA_PLUMA      reduce using rule 3 (instruccion -> AVANZA NUMERO .)
     REPITE          reduce using rule 3 (instruccion -> AVANZA NUMERO .)
+    SI              reduce using rule 3 (instruccion -> AVANZA NUMERO .)
     $end            reduce using rule 3 (instruccion -> AVANZA NUMERO .)
     RBRACKET        reduce using rule 3 (instruccion -> AVANZA NUMERO .)
 
 
-state 11
+state 12
 
     (4) instruccion -> GIRA_IZQUIERDA NUMERO .
 
@@ -182,11 +200,12 @@ state 11
     LEVANTA_PLUMA   reduce using rule 4 (instruccion -> GIRA_IZQUIERDA NUMERO .)
     BAJA_PLUMA      reduce using rule 4 (instruccion -> GIRA_IZQUIERDA NUMERO .)
     REPITE          reduce using rule 4 (instruccion -> GIRA_IZQUIERDA NUMERO .)
+    SI              reduce using rule 4 (instruccion -> GIRA_IZQUIERDA NUMERO .)
     $end            reduce using rule 4 (instruccion -> GIRA_IZQUIERDA NUMERO .)
     RBRACKET        reduce using rule 4 (instruccion -> GIRA_IZQUIERDA NUMERO .)
 
 
-state 12
+state 13
 
     (5) instruccion -> GIRA_DERECHA NUMERO .
 
@@ -196,18 +215,26 @@ state 12
     LEVANTA_PLUMA   reduce using rule 5 (instruccion -> GIRA_DERECHA NUMERO .)
     BAJA_PLUMA      reduce using rule 5 (instruccion -> GIRA_DERECHA NUMERO .)
     REPITE          reduce using rule 5 (instruccion -> GIRA_DERECHA NUMERO .)
+    SI              reduce using rule 5 (instruccion -> GIRA_DERECHA NUMERO .)
     $end            reduce using rule 5 (instruccion -> GIRA_DERECHA NUMERO .)
     RBRACKET        reduce using rule 5 (instruccion -> GIRA_DERECHA NUMERO .)
 
 
-state 13
+state 14
 
     (8) instruccion -> REPITE NUMERO . LBRACKET instrucciones RBRACKET
 
-    LBRACKET        shift and go to state 14
+    LBRACKET        shift and go to state 16
 
 
-state 14
+state 15
+
+    (9) instruccion -> SI NUMERO . LBRACKET instrucciones RBRACKET
+
+    LBRACKET        shift and go to state 17
+
+
+state 16
 
     (8) instruccion -> REPITE NUMERO LBRACKET . instrucciones RBRACKET
     (1) instrucciones -> . instruccion
@@ -218,6 +245,7 @@ state 14
     (6) instruccion -> . LEVANTA_PLUMA
     (7) instruccion -> . BAJA_PLUMA
     (8) instruccion -> . REPITE NUMERO LBRACKET instrucciones RBRACKET
+    (9) instruccion -> . SI NUMERO LBRACKET instrucciones RBRACKET
 
     AVANZA          shift and go to state 3
     GIRA_IZQUIERDA  shift and go to state 4
@@ -225,11 +253,36 @@ state 14
     LEVANTA_PLUMA   shift and go to state 6
     BAJA_PLUMA      shift and go to state 7
     REPITE          shift and go to state 8
+    SI              shift and go to state 9
 
-    instrucciones                  shift and go to state 15
+    instrucciones                  shift and go to state 18
     instruccion                    shift and go to state 2
 
-state 15
+state 17
+
+    (9) instruccion -> SI NUMERO LBRACKET . instrucciones RBRACKET
+    (1) instrucciones -> . instruccion
+    (2) instrucciones -> . instrucciones instruccion
+    (3) instruccion -> . AVANZA NUMERO
+    (4) instruccion -> . GIRA_IZQUIERDA NUMERO
+    (5) instruccion -> . GIRA_DERECHA NUMERO
+    (6) instruccion -> . LEVANTA_PLUMA
+    (7) instruccion -> . BAJA_PLUMA
+    (8) instruccion -> . REPITE NUMERO LBRACKET instrucciones RBRACKET
+    (9) instruccion -> . SI NUMERO LBRACKET instrucciones RBRACKET
+
+    AVANZA          shift and go to state 3
+    GIRA_IZQUIERDA  shift and go to state 4
+    GIRA_DERECHA    shift and go to state 5
+    LEVANTA_PLUMA   shift and go to state 6
+    BAJA_PLUMA      shift and go to state 7
+    REPITE          shift and go to state 8
+    SI              shift and go to state 9
+
+    instrucciones                  shift and go to state 19
+    instruccion                    shift and go to state 2
+
+state 18
 
     (8) instruccion -> REPITE NUMERO LBRACKET instrucciones . RBRACKET
     (2) instrucciones -> instrucciones . instruccion
@@ -239,18 +292,43 @@ state 15
     (6) instruccion -> . LEVANTA_PLUMA
     (7) instruccion -> . BAJA_PLUMA
     (8) instruccion -> . REPITE NUMERO LBRACKET instrucciones RBRACKET
+    (9) instruccion -> . SI NUMERO LBRACKET instrucciones RBRACKET
 
-    RBRACKET        shift and go to state 16
+    RBRACKET        shift and go to state 20
     AVANZA          shift and go to state 3
     GIRA_IZQUIERDA  shift and go to state 4
     GIRA_DERECHA    shift and go to state 5
     LEVANTA_PLUMA   shift and go to state 6
     BAJA_PLUMA      shift and go to state 7
     REPITE          shift and go to state 8
+    SI              shift and go to state 9
 
-    instruccion                    shift and go to state 9
+    instruccion                    shift and go to state 10
 
-state 16
+state 19
+
+    (9) instruccion -> SI NUMERO LBRACKET instrucciones . RBRACKET
+    (2) instrucciones -> instrucciones . instruccion
+    (3) instruccion -> . AVANZA NUMERO
+    (4) instruccion -> . GIRA_IZQUIERDA NUMERO
+    (5) instruccion -> . GIRA_DERECHA NUMERO
+    (6) instruccion -> . LEVANTA_PLUMA
+    (7) instruccion -> . BAJA_PLUMA
+    (8) instruccion -> . REPITE NUMERO LBRACKET instrucciones RBRACKET
+    (9) instruccion -> . SI NUMERO LBRACKET instrucciones RBRACKET
+
+    RBRACKET        shift and go to state 21
+    AVANZA          shift and go to state 3
+    GIRA_IZQUIERDA  shift and go to state 4
+    GIRA_DERECHA    shift and go to state 5
+    LEVANTA_PLUMA   shift and go to state 6
+    BAJA_PLUMA      shift and go to state 7
+    REPITE          shift and go to state 8
+    SI              shift and go to state 9
+
+    instruccion                    shift and go to state 10
+
+state 20
 
     (8) instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .
 
@@ -260,6 +338,22 @@ state 16
     LEVANTA_PLUMA   reduce using rule 8 (instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .)
     BAJA_PLUMA      reduce using rule 8 (instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .)
     REPITE          reduce using rule 8 (instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .)
+    SI              reduce using rule 8 (instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .)
     $end            reduce using rule 8 (instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .)
     RBRACKET        reduce using rule 8 (instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET .)
+
+
+state 21
+
+    (9) instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .
+
+    AVANZA          reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    GIRA_IZQUIERDA  reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    GIRA_DERECHA    reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    LEVANTA_PLUMA   reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    BAJA_PLUMA      reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    REPITE          reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    SI              reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    $end            reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
+    RBRACKET        reduce using rule 9 (instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET .)
 
