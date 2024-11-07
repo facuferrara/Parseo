@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AVANZA BAJA_PLUMA GIRA_DERECHA GIRA_IZQUIERDA LBRACKET LEVANTA_PLUMA NUMERO RBRACKET REPITE SIinstrucciones : instruccion\n                         | instrucciones instruccioninstruccion : AVANZA NUMERO\n                       | GIRA_IZQUIERDA NUMERO\n                       | GIRA_DERECHA NUMERO\n                       | LEVANTA_PLUMA\n                       | BAJA_PLUMAinstruccion : REPITE NUMERO LBRACKET instrucciones RBRACKETinstruccion : SI NUMERO LBRACKET instrucciones RBRACKET'
+_lr_signature = 'leftCONCATleftMASMENOSleftPORDIVIDIDOrightUMENOSCADENA CONCAT CORDER CORIZQ DECIMAL DIVIDIDO ELSE ENTERO ID IF IGUAL IGUALQUE IMPRIMIR LLAVDER LLAVIZQ MAS MAYQUE MENOS MENQUE NIGUALQUE NUMERO PARDER PARIZQ POR PTCOMA REPEAT WHILEinit            : instruccionesinstrucciones    : instrucciones instruccioninstrucciones    : instruccion instruccion      : imprimir_instr\n                        | definicion_instr\n                        | asignacion_instr\n                        | mientras_instr\n                        | repeat_instr\n                        | if_instr\n                        | if_else_instrimprimir_instr     : IMPRIMIR PARIZQ expresion_cadena PARDERdefinicion_instr   : NUMERO IDasignacion_instr   : ID IGUAL expresion_numericamientras_instr     : WHILE expresion_logica CORIZQ instrucciones CORDERrepeat_instr       : REPEAT expresion_numerica CORIZQ instrucciones CORDERif_instr           : IF expresion_logica CORIZQ instrucciones CORDERif_else_instr      : IF expresion_logica CORIZQ instrucciones CORDER ELSE CORIZQ instrucciones CORDERexpresion_numerica : expresion_numerica MAS expresion_numerica\n                        | expresion_numerica MENOS expresion_numerica\n                        | expresion_numerica POR expresion_numerica\n                        | expresion_numerica DIVIDIDO expresion_numericaexpresion_numerica : MENOS expresion_numerica %prec UMENOSexpresion_numerica : PARIZQ expresion_numerica PARDERexpresion_numerica : ENTERO\n                        | DECIMALexpresion_numerica   : IDexpresion_cadena     : expresion_cadena CONCAT expresion_cadenaexpresion_cadena     : CADENAexpresion_cadena     : expresion_numericaexpresion_logica : expresion_numerica MAYQUE expresion_numerica\n                        | expresion_numerica MENQUE expresion_numerica\n                        | expresion_numerica IGUALQUE expresion_numerica\n                        | expresion_numerica NIGUALQUE expresion_numerica'
     
-_lr_action_items = {'AVANZA':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[3,3,-1,-6,-7,-2,-3,-4,-5,3,3,3,3,-8,-9,]),'GIRA_IZQUIERDA':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[4,4,-1,-6,-7,-2,-3,-4,-5,4,4,4,4,-8,-9,]),'GIRA_DERECHA':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[5,5,-1,-6,-7,-2,-3,-4,-5,5,5,5,5,-8,-9,]),'LEVANTA_PLUMA':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[6,6,-1,-6,-7,-2,-3,-4,-5,6,6,6,6,-8,-9,]),'BAJA_PLUMA':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[7,7,-1,-6,-7,-2,-3,-4,-5,7,7,7,7,-8,-9,]),'REPITE':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[8,8,-1,-6,-7,-2,-3,-4,-5,8,8,8,8,-8,-9,]),'SI':([0,1,2,6,7,10,11,12,13,16,17,18,19,20,21,],[9,9,-1,-6,-7,-2,-3,-4,-5,9,9,9,9,-8,-9,]),'$end':([1,2,6,7,10,11,12,13,20,21,],[0,-1,-6,-7,-2,-3,-4,-5,-8,-9,]),'RBRACKET':([2,6,7,10,11,12,13,18,19,20,21,],[-1,-6,-7,-2,-3,-4,-5,20,21,-8,-9,]),'NUMERO':([3,4,5,8,9,],[11,12,13,14,15,]),'LBRACKET':([14,15,],[16,17,]),}
+_lr_action_items = {'IMPRIMIR':([0,2,3,4,5,6,7,8,9,10,17,19,25,26,27,33,34,43,45,46,47,49,54,55,56,57,58,59,60,62,63,64,66,67,68,],[11,11,-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,11,-22,11,11,-11,11,-18,-19,-20,-21,-23,11,11,-14,-15,-16,11,11,-17,]),'NUMERO':([0,2,3,4,5,6,7,8,9,10,17,19,25,26,27,33,34,43,45,46,47,49,54,55,56,57,58,59,60,62,63,64,66,67,68,],[12,12,-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,12,-22,12,12,-11,12,-18,-19,-20,-21,-23,12,12,-14,-15,-16,12,12,-17,]),'ID':([0,2,3,4,5,6,7,8,9,10,12,14,15,16,17,18,19,20,23,24,25,26,27,33,34,35,36,37,38,39,40,41,42,43,45,46,47,48,49,54,55,56,57,58,59,60,62,63,64,66,67,68,],[13,13,-3,-4,-5,-6,-7,-8,-9,-10,19,27,27,27,-2,27,-12,27,27,27,-24,-25,-26,-13,13,27,27,27,27,27,27,27,27,-22,13,13,-11,27,13,-18,-19,-20,-21,-23,13,13,-14,-15,-16,13,13,-17,]),'WHILE':([0,2,3,4,5,6,7,8,9,10,17,19,25,26,27,33,34,43,45,46,47,49,54,55,56,57,58,59,60,62,63,64,66,67,68,],[14,14,-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,14,-22,14,14,-11,14,-18,-19,-20,-21,-23,14,14,-14,-15,-16,14,14,-17,]),'REPEAT':([0,2,3,4,5,6,7,8,9,10,17,19,25,26,27,33,34,43,45,46,47,49,54,55,56,57,58,59,60,62,63,64,66,67,68,],[15,15,-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,15,-22,15,15,-11,15,-18,-19,-20,-21,-23,15,15,-14,-15,-16,15,15,-17,]),'IF':([0,2,3,4,5,6,7,8,9,10,17,19,25,26,27,33,34,43,45,46,47,49,54,55,56,57,58,59,60,62,63,64,66,67,68,],[16,16,-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,16,-22,16,16,-11,16,-18,-19,-20,-21,-23,16,16,-14,-15,-16,16,16,-17,]),'$end':([1,2,3,4,5,6,7,8,9,10,17,19,25,26,27,33,43,47,54,55,56,57,58,62,63,64,68,],[0,-1,-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,-22,-11,-18,-19,-20,-21,-23,-14,-15,-16,-17,]),'CORDER':([3,4,5,6,7,8,9,10,17,19,25,26,27,33,43,47,49,54,55,56,57,58,59,60,62,63,64,67,68,],[-3,-4,-5,-6,-7,-8,-9,-10,-2,-12,-24,-25,-26,-13,-22,-11,62,-18,-19,-20,-21,-23,63,64,-14,-15,-16,68,-17,]),'PARIZQ':([11,14,15,16,18,20,23,24,35,36,37,38,39,40,41,42,48,],[18,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,]),'IGUAL':([13,],[20,]),'MENOS':([14,15,16,18,20,22,23,24,25,26,27,28,32,33,35,36,37,38,39,40,41,42,43,44,48,50,51,52,53,54,55,56,57,58,],[23,23,23,23,23,40,23,23,-24,-25,-26,40,40,40,23,23,23,23,23,23,23,23,-22,40,23,40,40,40,40,-18,-19,-20,-21,-23,]),'ENTERO':([14,15,16,18,20,23,24,35,36,37,38,39,40,41,42,48,],[25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,]),'DECIMAL':([14,15,16,18,20,23,24,35,36,37,38,39,40,41,42,48,],[26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,]),'CADENA':([18,48,],[31,31,]),'CORIZQ':([21,25,26,27,28,29,43,50,51,52,53,54,55,56,57,58,65,],[34,-24,-25,-26,45,46,-22,-30,-31,-32,-33,-18,-19,-20,-21,-23,66,]),'MAYQUE':([22,25,26,27,43,54,55,56,57,58,],[35,-24,-25,-26,-22,-18,-19,-20,-21,-23,]),'MENQUE':([22,25,26,27,43,54,55,56,57,58,],[36,-24,-25,-26,-22,-18,-19,-20,-21,-23,]),'IGUALQUE':([22,25,26,27,43,54,55,56,57,58,],[37,-24,-25,-26,-22,-18,-19,-20,-21,-23,]),'NIGUALQUE':([22,25,26,27,43,54,55,56,57,58,],[38,-24,-25,-26,-22,-18,-19,-20,-21,-23,]),'MAS':([22,25,26,27,28,32,33,43,44,50,51,52,53,54,55,56,57,58,],[39,-24,-25,-26,39,39,39,-22,39,39,39,39,39,-18,-19,-20,-21,-23,]),'POR':([22,25,26,27,28,32,33,43,44,50,51,52,53,54,55,56,57,58,],[41,-24,-25,-26,41,41,41,-22,41,41,41,41,41,41,41,-20,-21,-23,]),'DIVIDIDO':([22,25,26,27,28,32,33,43,44,50,51,52,53,54,55,56,57,58,],[42,-24,-25,-26,42,42,42,-22,42,42,42,42,42,42,42,-20,-21,-23,]),'PARDER':([25,26,27,30,31,32,43,44,54,55,56,57,58,61,],[-24,-25,-26,47,-28,-29,-22,58,-18,-19,-20,-21,-23,-27,]),'CONCAT':([25,26,27,30,31,32,43,54,55,56,57,58,61,],[-24,-25,-26,48,-28,-29,-22,-18,-19,-20,-21,-23,-27,]),'ELSE':([64,],[65,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'instrucciones':([0,16,17,],[1,18,19,]),'instruccion':([0,1,16,17,18,19,],[2,10,2,2,10,10,]),}
+_lr_goto_items = {'init':([0,],[1,]),'instrucciones':([0,34,45,46,66,],[2,49,59,60,67,]),'instruccion':([0,2,34,45,46,49,59,60,66,67,],[3,17,3,3,3,17,17,17,3,17,]),'imprimir_instr':([0,2,34,45,46,49,59,60,66,67,],[4,4,4,4,4,4,4,4,4,4,]),'definicion_instr':([0,2,34,45,46,49,59,60,66,67,],[5,5,5,5,5,5,5,5,5,5,]),'asignacion_instr':([0,2,34,45,46,49,59,60,66,67,],[6,6,6,6,6,6,6,6,6,6,]),'mientras_instr':([0,2,34,45,46,49,59,60,66,67,],[7,7,7,7,7,7,7,7,7,7,]),'repeat_instr':([0,2,34,45,46,49,59,60,66,67,],[8,8,8,8,8,8,8,8,8,8,]),'if_instr':([0,2,34,45,46,49,59,60,66,67,],[9,9,9,9,9,9,9,9,9,9,]),'if_else_instr':([0,2,34,45,46,49,59,60,66,67,],[10,10,10,10,10,10,10,10,10,10,]),'expresion_logica':([14,16,],[21,29,]),'expresion_numerica':([14,15,16,18,20,23,24,35,36,37,38,39,40,41,42,48,],[22,28,22,32,33,43,44,50,51,52,53,54,55,56,57,32,]),'expresion_cadena':([18,48,],[30,61,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,14 +26,38 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> instrucciones","S'",1,None,None,None),
-  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones','parser.py',10),
-  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones','parser.py',11),
-  ('instruccion -> AVANZA NUMERO','instruccion',2,'p_instruccion','parser.py',19),
-  ('instruccion -> GIRA_IZQUIERDA NUMERO','instruccion',2,'p_instruccion','parser.py',20),
-  ('instruccion -> GIRA_DERECHA NUMERO','instruccion',2,'p_instruccion','parser.py',21),
-  ('instruccion -> LEVANTA_PLUMA','instruccion',1,'p_instruccion','parser.py',22),
-  ('instruccion -> BAJA_PLUMA','instruccion',1,'p_instruccion','parser.py',23),
-  ('instruccion -> REPITE NUMERO LBRACKET instrucciones RBRACKET','instruccion',5,'p_instruccion_repite','parser.py',40),
-  ('instruccion -> SI NUMERO LBRACKET instrucciones RBRACKET','instruccion',5,'p_instruccion_condicional','parser.py',47),
+  ("S' -> init","S'",1,None,None,None),
+  ('init -> instrucciones','init',1,'p_init','gramatica.py',130),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones_lista','gramatica.py',134),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_instruccion','gramatica.py',140),
+  ('instruccion -> imprimir_instr','instruccion',1,'p_instruccion','gramatica.py',144),
+  ('instruccion -> definicion_instr','instruccion',1,'p_instruccion','gramatica.py',145),
+  ('instruccion -> asignacion_instr','instruccion',1,'p_instruccion','gramatica.py',146),
+  ('instruccion -> mientras_instr','instruccion',1,'p_instruccion','gramatica.py',147),
+  ('instruccion -> repeat_instr','instruccion',1,'p_instruccion','gramatica.py',148),
+  ('instruccion -> if_instr','instruccion',1,'p_instruccion','gramatica.py',149),
+  ('instruccion -> if_else_instr','instruccion',1,'p_instruccion','gramatica.py',150),
+  ('imprimir_instr -> IMPRIMIR PARIZQ expresion_cadena PARDER','imprimir_instr',4,'p_instruccion_imprimir','gramatica.py',154),
+  ('definicion_instr -> NUMERO ID','definicion_instr',2,'p_instruccion_definicion','gramatica.py',158),
+  ('asignacion_instr -> ID IGUAL expresion_numerica','asignacion_instr',3,'p_asignacion_instr','gramatica.py',162),
+  ('mientras_instr -> WHILE expresion_logica CORIZQ instrucciones CORDER','mientras_instr',5,'p_mientras_instr','gramatica.py',166),
+  ('repeat_instr -> REPEAT expresion_numerica CORIZQ instrucciones CORDER','repeat_instr',5,'p_repeat_instr','gramatica.py',170),
+  ('if_instr -> IF expresion_logica CORIZQ instrucciones CORDER','if_instr',5,'p_if_instr','gramatica.py',174),
+  ('if_else_instr -> IF expresion_logica CORIZQ instrucciones CORDER ELSE CORIZQ instrucciones CORDER','if_else_instr',9,'p_if_else_instr','gramatica.py',178),
+  ('expresion_numerica -> expresion_numerica MAS expresion_numerica','expresion_numerica',3,'p_expresion_binaria','gramatica.py',182),
+  ('expresion_numerica -> expresion_numerica MENOS expresion_numerica','expresion_numerica',3,'p_expresion_binaria','gramatica.py',183),
+  ('expresion_numerica -> expresion_numerica POR expresion_numerica','expresion_numerica',3,'p_expresion_binaria','gramatica.py',184),
+  ('expresion_numerica -> expresion_numerica DIVIDIDO expresion_numerica','expresion_numerica',3,'p_expresion_binaria','gramatica.py',185),
+  ('expresion_numerica -> MENOS expresion_numerica','expresion_numerica',2,'p_expresion_unaria','gramatica.py',192),
+  ('expresion_numerica -> PARIZQ expresion_numerica PARDER','expresion_numerica',3,'p_expresion_agrupacion','gramatica.py',196),
+  ('expresion_numerica -> ENTERO','expresion_numerica',1,'p_expresion_number','gramatica.py',200),
+  ('expresion_numerica -> DECIMAL','expresion_numerica',1,'p_expresion_number','gramatica.py',201),
+  ('expresion_numerica -> ID','expresion_numerica',1,'p_expresion_id','gramatica.py',205),
+  ('expresion_cadena -> expresion_cadena CONCAT expresion_cadena','expresion_cadena',3,'p_expresion_concatenacion','gramatica.py',209),
+  ('expresion_cadena -> CADENA','expresion_cadena',1,'p_expresion_cadena','gramatica.py',213),
+  ('expresion_cadena -> expresion_numerica','expresion_cadena',1,'p_expresion_cadena_numerico','gramatica.py',217),
+  ('expresion_logica -> expresion_numerica MAYQUE expresion_numerica','expresion_logica',3,'p_expresion_logica','gramatica.py',221),
+  ('expresion_logica -> expresion_numerica MENQUE expresion_numerica','expresion_logica',3,'p_expresion_logica','gramatica.py',222),
+  ('expresion_logica -> expresion_numerica IGUALQUE expresion_numerica','expresion_logica',3,'p_expresion_logica','gramatica.py',223),
+  ('expresion_logica -> expresion_numerica NIGUALQUE expresion_numerica','expresion_logica',3,'p_expresion_logica','gramatica.py',224),
 ]
