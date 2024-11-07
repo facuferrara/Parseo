@@ -21,6 +21,7 @@ while a < 4+c [
 	a=a+1
 	numero b
 	b=0
+	d = 1+d
 	while b<4+c [
 		b=b+1
 		imprimir(a & " * " & b & " = " & a * b)
