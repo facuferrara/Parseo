@@ -9,16 +9,6 @@ class Instruccion:
     """
 
 
-class GirarIzquierda(Instruccion):
-    """
-        Esta clase representa la instrucción girar izquierda.
-        La instrucción girar izquierda únicamente tiene como parámetro los grados.
-    """
-
-    def __init__(self,  grados):
-        self.grados = grados
-
-
 class Imprimir(Instruccion):
     """
         Esta clase representa la instrucción imprimir.
@@ -27,6 +17,26 @@ class Imprimir(Instruccion):
 
     def __init__(self,  cad):
         self.cad = cad
+
+
+class Avanzar(Instruccion):
+    """
+        Esta clase representa la instrucción avanzar.
+        La instrucción girar izquierda únicamente tiene como parámetro los grados.
+    """
+
+    def __init__(self,  exp_numerica):
+        self.exp_numerica = exp_numerica
+
+
+class GirarIzquierda(Instruccion):
+    """
+        Esta clase representa la instrucción girar izquierda.
+        La instrucción girar izquierda únicamente tiene como parámetro los grados.
+    """
+
+    def __init__(self,  exp_numerica):
+        self.exp_numerica = exp_numerica
 
 
 class Mientras(Instruccion):

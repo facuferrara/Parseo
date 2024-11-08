@@ -2,14 +2,72 @@
     Módulo principal del compilador de Logo.
 """
 
-import gramatica as g
+import argparse
+import time
+import tkinter as tk
+
+from math import cos, sin, radians
+
+import gramatica as gram
 import ts as TS
 from expresiones import *
 from instrucciones import *
 
+# Inicializar la ventana y el canvas de Tkinter
+root = tk.Tk()
+root.title("Intérprete Tortuga")
+
+canvas = tk.Canvas(root, width=500, height=500, bg="white")
+canvas.pack()
+
+# Variables para la posición inicial de la tortuga
+x, y = 250, 250  # Centro del canvas
+angle = 0  # Ángulo inicial (0 grados, hacia la derecha)
+lapiz_abajo = True  # Controla si la tortuga está dibujando o no
+
+# Funciones para el dibujo
+
+
+def avanzar(distancia):
+    global x, y, angle, lapiz_abajo
+    new_x = x + distancia * cos(radians(angle))
+    new_y = y - distancia * sin(radians(angle))
+    if lapiz_abajo:
+        time.sleep(0.7)
+        canvas.create_line(x, y, new_x, new_y)
+        canvas.update()
+    x, y = new_x, new_y
+
+
+def girar_izquierda(grados):
+    global angle
+    angle = (angle + grados) % 360
+
+
+def girar_derecha(grados):
+    global angle
+    angle = (angle - grados) % 360
+
+
+def levanta_pluma():
+    global lapiz_abajo
+    lapiz_abajo = False
+
+
+def baja_pluma():
+    global lapiz_abajo
+    lapiz_abajo = True
+
+def procesar_avanzar(instr, ts):
+    val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
+    print('> AVANZAR ', val)
+    avanzar(val)
+
 
 def procesar_gira_izq(instr, ts):
-    print('> GIRA_IZQUIERDA ', resolver_cadena(instr.cad, ts))
+    val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
+    print('> GIRA_IZQUIERDA ', val)
+    girar_izquierda(val)
 
 
 def procesar_imprimir(instr, ts):
@@ -108,7 +166,11 @@ def resolver_expresion_aritmetica(exp_num, ts):
 def procesar_instrucciones(instrucciones, ts):
     # lista de instrucciones recolectadas
     for instr in instrucciones:
-        if isinstance(instr, Imprimir):
+        if isinstance(instr, Avanzar):
+            procesar_avanzar(instr, ts)
+        elif isinstance(instr, GirarIzquierda):
+            procesar_gira_izq(instr, ts)
+        elif isinstance(instr, Imprimir):
             procesar_imprimir(instr, ts)
         elif isinstance(instr, Definicion):
             procesar_definicion(instr, ts)
@@ -126,10 +188,28 @@ def procesar_instrucciones(instrucciones, ts):
             print('Error: instrucción no válida')
 
 
-f = open("./entrada.txt", "r")
-input = f.read()
 
-instrucciones = g.parse(input)
-ts_global = TS.TablaDeSimbolos()
 
-procesar_instrucciones(instrucciones, ts_global)
+cli = argparse.ArgumentParser(description='Un simple compilador de Logo.')
+cli.add_argument("-f", "--file", help="Nombre de archivo a procesar")
+
+args = cli.parse_args()
+
+codigo = ""
+
+if args.file:
+    try:
+        with open(args.file, encoding="utf8") as file:
+            codigo = file.read()
+    except IOError as e:
+        print(f"Archivo no encontrado: '{args.file}'")
+
+if codigo:
+    # Utiliza el lexer y el parser para procesar el código
+    instrucciones = gram.parse(codigo)
+    ts_global = TS.TablaDeSimbolos()
+
+    procesar_instrucciones(instrucciones, ts_global)
+
+    # Ejecutar el bucle principal de la ventana Tkinter
+    root.mainloop()

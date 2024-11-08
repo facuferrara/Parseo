@@ -10,6 +10,8 @@ import ply.lex as lex
 reservadas = {
     'numero': 'NUMERO',
     'imprimir': 'IMPRIMIR',
+    'avanzar': 'AVANZAR',
+    'girar_izq': 'GIRAR_IZQUIERDA',
     'while': 'WHILE',
     'repeat': 'REPEAT',
     'if': 'IF',
@@ -159,6 +161,8 @@ def p_instrucciones_instruccion(t):
 
 def p_instruccion(t):
     '''instruccion      : imprimir_instr
+                        | avanzar_instr
+                        | girar_izq_instr
                         | definicion_instr
                         | asignacion_instr
                         | mientras_instr
@@ -171,6 +175,16 @@ def p_instruccion(t):
 def p_instruccion_imprimir(t):
     'imprimir_instr     : IMPRIMIR PARIZQ expresion_cadena PARDER'
     t[0] = Imprimir(t[3])
+
+
+def p_avanzar_instr(t):
+    'avanzar_instr     : AVANZAR expresion_numerica'
+    t[0] = Avanzar(t[2])
+
+
+def p_girar_izq_instr(t):
+    'girar_izq_instr     : GIRAR_IZQUIERDA expresion_numerica'
+    t[0] = GirarIzquierda(t[2])
 
 
 def p_instruccion_definicion(t):
