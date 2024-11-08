@@ -59,3 +59,4 @@ if a>10 [
 
 repeat 2 [ imprimir("FACU.") ]
 repeat 2+2 [ avanzar 50+50 girar_izq a+79 ]
+~

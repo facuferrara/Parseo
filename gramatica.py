@@ -19,9 +19,6 @@ reservadas = {
 }
 
 tokens = [
-    'PTCOMA',
-    'LLAVIZQ',
-    'LLAVDER',
     'CORIZQ',
     'CORDER',
     'PARIZQ',
@@ -43,9 +40,6 @@ tokens = [
 ] + list(reservadas.values())
 
 # Tokens
-t_PTCOMA = r';'
-t_LLAVIZQ = r'{'
-t_LLAVDER = r'}'
 t_CORIZQ = r'\['
 t_CORDER = r'\]'
 t_PARIZQ = r'\('
@@ -119,7 +113,8 @@ def t_newline(t):
 
 
 def t_error(t):
-    print(f"Illegal character '{t.value[0]}'")
+    print("Caracter illegal '%s' en linea %d, columna %d" % (t.value[0],
+                                                             t.lexer.lineno, t.lexer.lexpos))
     t.lexer.skip(1)
 
 
@@ -288,8 +283,7 @@ def p_error(t):
     print(f"Error sintáctico en '{t.value}'.")
 
 
-parser = yacc.yacc()
-
+parser = yacc.yacc(debug=False, write_tables=False)
 
 def parse(input):
     return parser.parse(input)
