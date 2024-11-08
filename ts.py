@@ -27,8 +27,8 @@ class TablaDeSimbolos():
     Esta clase representa la tabla de símbolos.
     """
 
-    def __init__(self, simbolos=dict()):
-        self.simbolos = simbolos
+    def __init__(self, simbolos=None):
+        self.simbolos = {} if simbolos is None else simbolos
 
     def agregar(self, simbolo: Simbolo):
         self.simbolos[simbolo.id_key] = simbolo
