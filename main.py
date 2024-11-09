@@ -21,9 +21,14 @@ canvas = tk.Canvas(root, width=500, height=500, bg="white")
 canvas.pack()
 
 # Variables para la posición inicial de la tortuga
-x, y = 250, 250  # Centro del canvas
-angle = 0  # Ángulo inicial (0 grados, hacia la derecha)
-lapiz_abajo = True  # Controla si la tortuga está dibujando o no
+# Centro del canvas
+x, y = 250, 250
+
+# Ángulo inicial (0 grados, hacia la derecha)
+angle = 0
+
+# Controla si la tortuga está dibujando o no
+lapiz_abajo = True
 
 # Funciones para el dibujo
 
@@ -57,6 +62,9 @@ def levanta_pluma():
 def baja_pluma():
     global lapiz_abajo
     lapiz_abajo = True
+
+# Funciones para el procesamiento de las instrucciones
+
 
 def procesar_avanzar(instr, ts):
     val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
@@ -188,7 +196,7 @@ def procesar_instrucciones(instrucciones, ts):
             print('Error: instrucción no válida')
 
 
-
+# Parseo de la linea de comando para la utilizacion del script
 
 cli = argparse.ArgumentParser(description='Un simple compilador de Logo.')
 cli.add_argument("-f", "--file", help="Nombre de archivo a procesar")
