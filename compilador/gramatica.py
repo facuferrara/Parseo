@@ -12,6 +12,7 @@ reservadas = {
     'imprimir': 'IMPRIMIR',
     'avanzar': 'AVANZAR',
     'girar_izq': 'GIRAR_IZQUIERDA',
+    'right': 'GIRAR_DERECHA',
     'while': 'WHILE',
     'repeat': 'REPEAT',
     'if': 'IF',
@@ -158,6 +159,7 @@ def p_instruccion(t):
     '''instruccion      : imprimir_instr
                         | avanzar_instr
                         | girar_izq_instr
+                        | girar_der_instr
                         | definicion_instr
                         | asignacion_instr
                         | mientras_instr
@@ -181,6 +183,9 @@ def p_girar_izq_instr(t):
     'girar_izq_instr     : GIRAR_IZQUIERDA expresion_numerica'
     t[0] = GirarIzquierda(t[2])
 
+def p_girar_der_instr(t):
+    'girar_der_instr     : GIRAR_DERECHA expresion_numerica'
+    t[0] = GirarDerecha(t[2])
 
 def p_instruccion_definicion(t):
     'definicion_instr   : NUMERO ID'

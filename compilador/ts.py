@@ -43,5 +43,4 @@ class TablaDeSimbolos():
         try:
             self.simbolos[simbolo.id_key] = simbolo
         except Exception as e:
-            raise NameError(f"Error: variable {
-                            simbolo.id_key} no definida.") from e
+            raise NameError(f"Error: variable {simbolo.id_key} no definida.") from e

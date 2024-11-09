@@ -77,6 +77,10 @@ def procesar_gira_izq(instr, ts):
     print('> GIRA_IZQUIERDA ', val)
     girar_izquierda(val)
 
+def procesar_gira_der(instr, ts):
+    val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
+    print('> GIRA_DERECHA ', val)
+    girar_derecha(val)
 
 def procesar_imprimir(instr, ts):
     print('> ', resolver_cadena(instr.cad, ts))
@@ -178,6 +182,8 @@ def procesar_instrucciones(instrucciones, ts):
             procesar_avanzar(instr, ts)
         elif isinstance(instr, GirarIzquierda):
             procesar_gira_izq(instr, ts)
+        elif isinstance(instr, GirarDerecha):
+            procesar_gira_der(instr, ts)
         elif isinstance(instr, Imprimir):
             procesar_imprimir(instr, ts)
         elif isinstance(instr, Definicion):

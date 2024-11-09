@@ -38,6 +38,15 @@ class GirarIzquierda(Instruccion):
     def __init__(self,  exp_numerica):
         self.exp_numerica = exp_numerica
 
+class GirarDerecha(Instruccion):
+    """
+        Esta clase representa la instrucción girar derecha.
+        La instrucción girar derecha únicamente tiene como parámetro los grados.
+    """
+
+    def __init__(self,  exp_numerica):
+        self.exp_numerica = exp_numerica
+
 
 class Mientras(Instruccion):
     """
