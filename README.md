@@ -120,65 +120,65 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
 ## Acciones disponibles
 
 - Mover tortuga:
-  - `forward <exp>`
-  - `back <exp>`
+  - [x] `forward <exp>`
+  - [ ] `back <exp>`
   
 - Rotar tortuga:
-  - `left <exp>`
-  - `right <exp>`
+  - [x] `left <exp>`
+  - [ ] `right <exp>`
   
 - Posicionar tortuga:
-  - `setpos [<exp> <exp>]`
-  - `setx <exp>`
-  - `sety <exp>`
+  - [ ] `setpos [<exp> <exp>]`
+  - [ ] `setx <exp>`
+  - [ ] `sety <exp>`
   
 - Obtener posición tortuga:
-  - `xcor`
-  - `ycor`
-  - `pos`
+  - [ ] `xcor`
+  - [ ] `ycor`
+  - [ ] `pos`
   
 - Centrar tortuga:
-  - `home`
+  - [ ] `home`
   
 - Mostrar/Ocultar tortuga:
-  - `showturtle`
-  - `hideturtle`
+  - [ ] `showturtle`
+  - [ ] `hideturtle`
   
 - Limpiar pantalla:
-  - `clean`
+  - [ ] `clean`
   
 - Limpiar pantalla y centrar tortuga:
-  - `clearscreen`
+  - [ ] `clearscreen`
   
 - Mostrar:
-  - `show <exp>`
+  - [ ] `show <exp>`
   
 - Subir/Bajar lápiz:
-  - `pendown`
-  - `penup`
+  - [ ] `pendown`
+  - [ ] `penup`
   
 - Ciclos:
-  - `repeat <expr> [ comandos... ]`
-  - `while <expr> [ comandos... ]`
+  - [x] `repeat <expr> [ comandos... ]`
+  - [x] `while <expr> [ comandos... ]`
   
 - Bifurcaciones:
-  - `if <expr> [ comandos... ]`
-  - `ifelse <expr> [ comandos... ] [ comandos... ]`
+  - [x] `if <expr> [ comandos... ]`
+  - [x] `ifelse <expr> [ comandos... ] [ comandos... ]`
   
 - Procedimiento:
-  - `to <proc_name> <inputs> <comandos> end`
+  - [ ] `to <proc_name> <inputs> <comandos> end`
   
 - Asignación:
-  - `name <expr> varname`
+  - [ ] `name <expr> varname`
   
 - Referencia:
-  - `:varname`
+  - [ ] `:varname`
   
 - Listas de palabras o listas, separadas por espacio en blanco:
-  - `[ word ... ]`
+  - [ ] `[ word ... ]`
   
 - Bloques comandos:
-  - `[ comandos...]`
+  - [ ] `[ comandos...]`
 
 ## Ejemplo de programa
 
