@@ -11,8 +11,10 @@ reservadas = {
     'numero': 'NUMERO',
     'imprimir': 'IMPRIMIR',
     'avanzar': 'AVANZAR',
+    'retroceder': 'RETROCEDER',
     'girar_izq': 'GIRAR_IZQUIERDA',
     'right': 'GIRAR_DERECHA',
+    'setpos': 'SETPOS',
     'while': 'WHILE',
     'repeat': 'REPEAT',
     'if': 'IF',
@@ -160,6 +162,8 @@ def p_instruccion(t):
                         | avanzar_instr
                         | girar_izq_instr
                         | girar_der_instr
+                        | retroceder_instr
+                        | setpos_instr
                         | definicion_instr
                         | asignacion_instr
                         | mientras_instr
@@ -177,6 +181,10 @@ def p_instruccion_imprimir(t):
 def p_avanzar_instr(t):
     'avanzar_instr     : AVANZAR expresion_numerica'
     t[0] = Avanzar(t[2])
+
+def p_retroceder_instr(t):
+    'retroceder_instr  : RETROCEDER expresion_numerica'
+    t[0] = Retroceder(t[2])
 
 
 def p_girar_izq_instr(t):
@@ -196,11 +204,13 @@ def p_asignacion_instr(t):
     'asignacion_instr   : ID IGUAL expresion_numerica'
     t[0] = Asignacion(t[1], t[3])
 
+def p_setpos_instr(t):
+    'setpos_instr : SETPOS CORIZQ expresion_numerica expresion_numerica CORDER'
+    t[0] = SetPosicion(t[3], t[4])
 
 def p_mientras_instr(t):
     'mientras_instr     : WHILE expresion_logica CORIZQ instrucciones CORDER'
     t[0] = Mientras(t[2], t[4])
-
 
 def p_repeat_instr(t):
     'repeat_instr       : REPEAT expresion_numerica CORIZQ instrucciones CORDER'

@@ -121,14 +121,14 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
 
 - Mover tortuga:
   - [x] `forward <exp>`
-  - [ ] `back <exp>`
+  - [x] `back <exp>`
   
 - Rotar tortuga:
   - [x] `left <exp>`
-  - [ ] `right <exp>`
+  - [x] `right <exp>`
   
 - Posicionar tortuga:
-  - [ ] `setpos [<exp> <exp>]`
+  - [x] `setpos [<exp> <exp>]`
   - [ ] `setx <exp>`
   - [ ] `sety <exp>`
   

@@ -8,7 +8,6 @@ class Instruccion:
     Clase abstracta de instruciones.
     """
 
-
 class Imprimir(Instruccion):
     """
         Esta clase representa la instrucción imprimir.
@@ -27,7 +26,15 @@ class Avanzar(Instruccion):
 
     def __init__(self,  exp_numerica):
         self.exp_numerica = exp_numerica
+     
+class Retroceder(Instruccion):
+    """
+        Esta clase representa la instrucción retroceder.
+        La instrucción retroceder únicamente tiene como parámetro los grados.
+    """
 
+    def __init__(self,  exp_numerica):
+        self.exp_numerica = exp_numerica
 
 class GirarIzquierda(Instruccion):
     """
@@ -46,6 +53,15 @@ class GirarDerecha(Instruccion):
 
     def __init__(self,  exp_numerica):
         self.exp_numerica = exp_numerica
+
+class SetPosicion:
+    """
+        Esta clase representa la instrucción setpos.
+        La instrucción setpos recibe dos expresiones numéricas para la posición en X y en Y.
+    """
+    def __init__(self, exp_x, exp_y):
+        self.exp_x = exp_x
+        self.exp_y = exp_y
 
 
 class Mientras(Instruccion):

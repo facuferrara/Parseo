@@ -42,7 +42,26 @@ def avanzar(distancia):
         canvas.create_line(x, y, new_x, new_y)
         canvas.update()
     x, y = new_x, new_y
-
+    # Actualizacion grafica para el show
+    # canvas.create_text(x, y, text=f"({x}, {y})", fill="black", font=("Helvetica", 8))
+     
+def retroceder(distancia):
+    global x, y, angle, lapiz_abajo
+    new_x = x - distancia * cos(radians(angle))
+    new_y = y + distancia * sin(radians(angle))
+    if lapiz_abajo:
+        time.sleep(0.7)
+        canvas.create_line(x, y, new_x, new_y)
+        canvas.update()
+    x, y = new_x, new_y
+    
+def procesar_setpos(instr, ts):
+    val_x = resolver_expresion_aritmetica(instr.exp_x, ts)
+    val_y = resolver_expresion_aritmetica(instr.exp_y, ts)
+    print(f'> SETPOS a ({val_x}, {val_y})')
+    
+    global x, y
+    x, y = val_x, val_y  # Actualiza la posición de la tortuga sin dibujar
 
 def girar_izquierda(grados):
     global angle
@@ -64,13 +83,15 @@ def baja_pluma():
     lapiz_abajo = True
 
 # Funciones para el procesamiento de las instrucciones
-
-
 def procesar_avanzar(instr, ts):
     val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
     print('> AVANZAR ', val)
     avanzar(val)
 
+def procesar_retroceder(instr, ts):
+    val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
+    print('> RETROCEDER ', val)
+    retroceder(val)
 
 def procesar_gira_izq(instr, ts):
     val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
@@ -154,32 +175,78 @@ def resolver_expresion_logica(exp_log, ts):
         return exp1 != exp2
 
 
+# def resolver_expresion_aritmetica(exp_num, ts):
+#     if isinstance(exp_num, ExpresionBinaria):
+#         exp1 = resolver_expresion_aritmetica(exp_num.exp1, ts)
+#         exp2 = resolver_expresion_aritmetica(exp_num.exp2, ts)
+#         if exp_num.operador == OPERACION_ARITMETICA.MAS:
+#             return exp1 + exp2
+#         if exp_num.operador == OPERACION_ARITMETICA.MENOS:
+#             return exp1 - exp2
+#         if exp_num.operador == OPERACION_ARITMETICA.POR:
+#             return exp1 * exp2
+#         if exp_num.operador == OPERACION_ARITMETICA.DIVIDIDO:
+#             return exp1 / exp2
+#     elif isinstance(exp_num, ExpresionNegativo):
+#         exp = resolver_expresion_aritmetica(exp_num.exp, ts)
+#         return exp * -1
+#     elif isinstance(exp_num, ExpresionNumero):
+#         return exp_num.val
+#     elif isinstance(exp_num, ExpresionIdentificador):
+#         return ts.obtener(exp_num.id).valor
+
 def resolver_expresion_aritmetica(exp_num, ts):
+    """
+    Resuelve una expresión aritmética, que puede ser una expresión binaria,
+    una variable (identificador), un número literal o una expresión negativa.
+    """
+    # Si es una expresión binaria (por ejemplo, a + b)
     if isinstance(exp_num, ExpresionBinaria):
+        # Resolver las dos expresiones involucradas
         exp1 = resolver_expresion_aritmetica(exp_num.exp1, ts)
         exp2 = resolver_expresion_aritmetica(exp_num.exp2, ts)
+        
+        # Dependiendo del operador, realizamos la operación correspondiente
         if exp_num.operador == OPERACION_ARITMETICA.MAS:
             return exp1 + exp2
-        if exp_num.operador == OPERACION_ARITMETICA.MENOS:
+        elif exp_num.operador == OPERACION_ARITMETICA.MENOS:
             return exp1 - exp2
-        if exp_num.operador == OPERACION_ARITMETICA.POR:
+        elif exp_num.operador == OPERACION_ARITMETICA.POR:
             return exp1 * exp2
-        if exp_num.operador == OPERACION_ARITMETICA.DIVIDIDO:
+        elif exp_num.operador == OPERACION_ARITMETICA.DIVIDIDO:
             return exp1 / exp2
+    
+    # Si es una expresión de negativo (por ejemplo, -a)
     elif isinstance(exp_num, ExpresionNegativo):
+        # Resolver la expresión y devolver el valor negativo
         exp = resolver_expresion_aritmetica(exp_num.exp, ts)
         return exp * -1
+    
+    # Si es un número literal (por ejemplo, 10)
     elif isinstance(exp_num, ExpresionNumero):
         return exp_num.val
+    
+    # Si es un identificador (por ejemplo, una variable como 'distancia')
     elif isinstance(exp_num, ExpresionIdentificador):
-        return ts.obtener(exp_num.id).valor
+        # Obtener el símbolo de la tabla de símbolos y devolver su valor
+        simbolo = ts.obtener(exp_num.id)
+        return simbolo.valor
+    
+    # Si no es ninguno de los tipos anteriores, se lanza un error
+    else:
+        raise TypeError(f"Tipo de expresión no soportado: {type(exp_num)}")
 
 
 def procesar_instrucciones(instrucciones, ts):
     # lista de instrucciones recolectadas
     for instr in instrucciones:
         if isinstance(instr, Avanzar):
+            # instr.show()  # Mostrar el avance
             procesar_avanzar(instr, ts)
+        elif isinstance(instr, SetPosicion):
+            procesar_setpos(instr, ts)          
+        elif isinstance(instr, Retroceder):
+            procesar_retroceder(instr, ts)
         elif isinstance(instr, GirarIzquierda):
             procesar_gira_izq(instr, ts)
         elif isinstance(instr, GirarDerecha):
