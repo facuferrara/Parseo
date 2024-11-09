@@ -3,8 +3,8 @@
 """
 
 import ply.yacc as yacc
-from instrucciones import *
-from expresiones import *
+from compilador.instrucciones import *
+from compilador.expresiones import *
 import ply.lex as lex
 
 reservadas = {

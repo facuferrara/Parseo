@@ -8,10 +8,10 @@ import tkinter as tk
 
 from math import cos, sin, radians
 
-import gramatica as gram
-import ts as TS
-from expresiones import *
-from instrucciones import *
+import compilador.gramatica as gram
+import compilador.ts as TS
+from compilador.instrucciones import *
+from compilador.expresiones import *
 
 # Inicializar la ventana y el canvas de Tkinter
 root = tk.Tk()
