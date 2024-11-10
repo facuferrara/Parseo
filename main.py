@@ -71,15 +71,6 @@ def girar_derecha(grados):
     angle = (angle - grados) % 360
 
 
-def levanta_pluma():
-    global lapiz_abajo
-    lapiz_abajo = False
-
-
-def baja_pluma():
-    global lapiz_abajo
-    lapiz_abajo = True
-
 def actualizar_pluma(estado):
     global lapiz_abajo
     lapiz_abajo = estado
@@ -89,6 +80,19 @@ def imprimir_tk(cadena):
     textID = canvas.create_text(240,y_text, justify='left', text=cadena)
     canvas.update()
     y_text+=10
+
+
+def clean():
+    canvas.delete("all")
+
+
+def home():
+    setpos(250, 250)
+
+
+def clear_screen():
+    clean()
+    home()
 
 # Funciones para el procesamiento de las instrucciones
 def procesar_avanzar(instr, ts):
@@ -124,6 +128,16 @@ def procesar_setpos(instr, ts):
 
 def procesar_pen(instr, ts):
     actualizar_pluma(instr.state)
+
+
+def procesar_home(instr, ts):
+    home()
+
+def procesar_clean(instr, ts):
+    clean()
+
+def procesar_clear_screen(instr, ts):
+    clear_screen()
 
 def procesar_definicion(instr, ts):
     # inicializamos con 0 como valor por defecto
@@ -243,7 +257,13 @@ def procesar_instrucciones(instrucciones, ts):
         elif isinstance(instr, SetPosicion):
             procesar_setpos(instr, ts)          
         elif isinstance(instr, SetPen):
-            procesar_pen(instr, ts)          
+            procesar_pen(instr, ts)
+        elif isinstance(instr, Home):
+            procesar_home(instr, ts)
+        elif isinstance(instr, Clean):
+            procesar_clean(instr, ts)
+        elif isinstance(instr, ClearScreen):
+            procesar_clear_screen(instr, ts)
         elif isinstance(instr, Retroceder):
             procesar_retroceder(instr, ts)
         elif isinstance(instr, GirarIzquierda):
@@ -294,3 +314,4 @@ if codigo:
 
     # Ejecutar el bucle principal de la ventana Tkinter
     root.mainloop()
+

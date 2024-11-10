@@ -59,8 +59,10 @@ if a>10 [
 
 repeat 2 [ show "FACU." ]
 repeat 2+2 [ foward 50+50 left a+79 ]
-right 90 foward 100 
-right 90 back 100
+right 90 foward 100
+home 
+right 60 back 200
+clean
 setpos [100 100]
 right 45 foward 75 
 right 30 back 50
@@ -68,3 +70,5 @@ penup
 foward 75 
 pendown
 right 30 back 50
+clearscreen
+foward 75 

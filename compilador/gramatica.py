@@ -17,6 +17,9 @@ reservadas = {
     'setpos': 'SETPOS',
     'penup': 'LEVANTAR_LAPIZ',
     'pendown': 'BAJAR_LAPIZ',
+    'home': 'HOME',
+    'clean': 'CLEAN',
+    'clearscreen': 'CLEARSCREEN',
     'while': 'WHILE',
     'repeat': 'REPEAT',
     'if': 'IF',
@@ -168,6 +171,9 @@ def p_instruccion(t):
                         | setpos_instr
                         | penup_instr
                         | pendown_instr
+                        | home_instr
+                        | clean_instr
+                        | clearscreen_instr
                         | definicion_instr
                         | asignacion_instr
                         | mientras_instr
@@ -218,6 +224,21 @@ def p_penup_instr(t):
 def p_asignacion_instr(t):
     'asignacion_instr   : ID IGUAL expresion_numerica'
     t[0] = Asignacion(t[1], t[3])
+
+
+def p_home_instr(t):
+    'home_instr : HOME'
+    t[0] = Home()
+
+
+def p_clean_instr(t):
+    'clean_instr : CLEAN'
+    t[0] = Clean()
+
+def p_clearscreen_instr(t):
+    'clearscreen_instr : CLEARSCREEN'
+    t[0] = ClearScreen()
+
 
 def p_mientras_instr(t):
     'mientras_instr     : WHILE expresion_logica CORIZQ instrucciones CORDER'

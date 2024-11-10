@@ -115,7 +115,15 @@ La versión PYLogo consiste en un conjunto limitado de comandos que incluyen acc
 
 Ejemplo:
 
-Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA(); AVANZA(50); END
+```
+setpos [600, 600]
+foward 100
+left 90
+foward 50
+pendown
+foward 50
+```
+
 
 ## Acciones disponibles
 
@@ -138,17 +146,17 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
   - [ ] `pos`
   
 - Centrar tortuga:
-  - [ ] `home`
+  - [x] `home`
   
 - Mostrar/Ocultar tortuga:
   - [ ] `showturtle`
   - [ ] `hideturtle`
   
 - Limpiar pantalla:
-  - [ ] `clean`
+  - [x] `clean`
   
 - Limpiar pantalla y centrar tortuga:
-  - [ ] `clearscreen`
+  - [x] `clearscreen`
   
 - Mostrar:
   - [x] `show <exp>`

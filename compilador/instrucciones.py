@@ -71,6 +71,30 @@ class SetPen(Instruccion):
     def __init__(self, state):
         self.state = state
 
+class Home(Instruccion):
+    """
+        Esta clase representa la instrucción home.
+        La instrucciones no recibe parametros.
+    """
+    def __init__(self):
+        pass
+
+class Clean(Instruccion):
+    """
+        Esta clase representa la instrucción clean.
+        La instrucciones no recibe parametros.
+    """
+    def __init__(self):
+        pass
+
+class ClearScreen(Instruccion):
+    """
+        Esta clase representa la instrucción clearscreen.
+        La instrucciones no recibe parametros.
+    """
+    def __init__(self):
+        pass
+
 class Mientras(Instruccion):
     """
         Esta clase representa la instrucción mientras.
