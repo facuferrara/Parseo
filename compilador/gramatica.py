@@ -9,12 +9,14 @@ import ply.lex as lex
 
 reservadas = {
     'numero': 'NUMERO',
-    'imprimir': 'IMPRIMIR',
-    'avanzar': 'AVANZAR',
-    'retroceder': 'RETROCEDER',
-    'girar_izq': 'GIRAR_IZQUIERDA',
+    'show': 'IMPRIMIR',
+    'foward': 'AVANZAR',
+    'back': 'RETROCEDER',
+    'left': 'GIRAR_IZQUIERDA',
     'right': 'GIRAR_DERECHA',
     'setpos': 'SETPOS',
+    'penup': 'LEVANTAR_LAPIZ',
+    'pendown': 'BAJAR_LAPIZ',
     'while': 'WHILE',
     'repeat': 'REPEAT',
     'if': 'IF',
@@ -164,6 +166,8 @@ def p_instruccion(t):
                         | girar_der_instr
                         | retroceder_instr
                         | setpos_instr
+                        | penup_instr
+                        | pendown_instr
                         | definicion_instr
                         | asignacion_instr
                         | mientras_instr
@@ -174,8 +178,8 @@ def p_instruccion(t):
 
 
 def p_instruccion_imprimir(t):
-    'imprimir_instr     : IMPRIMIR PARIZQ expresion_cadena PARDER'
-    t[0] = Imprimir(t[3])
+    'imprimir_instr     : IMPRIMIR expresion_cadena'
+    t[0] = Imprimir(t[2])
 
 
 def p_avanzar_instr(t):
@@ -199,14 +203,21 @@ def p_instruccion_definicion(t):
     'definicion_instr   : NUMERO ID'
     t[0] = Definicion(t[2])
 
+def p_setpos_instr(t):
+    'setpos_instr : SETPOS CORIZQ expresion_numerica expresion_numerica CORDER'
+    t[0] = SetPosicion(t[3], t[4])
+
+def p_pendown_instr(t):
+    'pendown_instr : BAJAR_LAPIZ'
+    t[0] = SetPen(True)
+
+def p_penup_instr(t):
+    'penup_instr : LEVANTAR_LAPIZ'
+    t[0] = SetPen(False)
 
 def p_asignacion_instr(t):
     'asignacion_instr   : ID IGUAL expresion_numerica'
     t[0] = Asignacion(t[1], t[3])
-
-def p_setpos_instr(t):
-    'setpos_instr : SETPOS CORIZQ expresion_numerica expresion_numerica CORDER'
-    t[0] = SetPosicion(t[3], t[4])
 
 def p_mientras_instr(t):
     'mientras_instr     : WHILE expresion_logica CORIZQ instrucciones CORDER'

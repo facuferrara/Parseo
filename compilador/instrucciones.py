@@ -63,6 +63,13 @@ class SetPosicion:
         self.exp_x = exp_x
         self.exp_y = exp_y
 
+class SetPen(Instruccion):
+    """
+        Esta clase representa la instrucción pendown y penup.
+        La instrucciones pendown y penup no recibe parametros.
+    """
+    def __init__(self, state):
+        self.state = state
 
 class Mientras(Instruccion):
     """

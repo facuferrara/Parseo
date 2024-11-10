@@ -80,6 +80,10 @@ def baja_pluma():
     global lapiz_abajo
     lapiz_abajo = True
 
+def actualizar_pluma(estado):
+    global lapiz_abajo
+    lapiz_abajo = estado
+
 def imprimir_tk(cadena):
     global y_text
     textID = canvas.create_text(240,y_text, justify='left', text=cadena)
@@ -117,6 +121,9 @@ def procesar_setpos(instr, ts):
     val_y = resolver_expresion_aritmetica(instr.exp_y, ts)
     print(f'> SETPOS a ({val_x}, {val_y})')
     setpos(val_x, val_y)
+
+def procesar_pen(instr, ts):
+    actualizar_pluma(instr.state)
 
 def procesar_definicion(instr, ts):
     # inicializamos con 0 como valor por defecto
@@ -235,6 +242,8 @@ def procesar_instrucciones(instrucciones, ts):
             procesar_avanzar(instr, ts)
         elif isinstance(instr, SetPosicion):
             procesar_setpos(instr, ts)          
+        elif isinstance(instr, SetPen):
+            procesar_pen(instr, ts)          
         elif isinstance(instr, Retroceder):
             procesar_retroceder(instr, ts)
         elif isinstance(instr, GirarIzquierda):

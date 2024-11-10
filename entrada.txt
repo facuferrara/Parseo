@@ -1,5 +1,5 @@
 //Se imprime el encabezado
-imprimir("Tablas de" & " multiplicar")
+show "Tablas de" & " multiplicar"
 
 //Se declara la variable a, de tipo numero
 numero a
@@ -10,7 +10,7 @@ numero c
 //Se asigna a la variable c el valor 0
 c=1
 //Se imprime un separador
-imprimir("----------------")
+show "----------------"
 /**
  * Se imprimen las tablas del 1 al 5 y 
  * para cada tabla, se imprimen los resultados
@@ -23,9 +23,9 @@ while a < 4+c [
 	b=0
 	while b<4+c [
 		b=b+1
-		imprimir(a & " * " & b & " = " & a * b)
+		show a & " * " & b & " = " & a * b
 	]
-	imprimir("----------------")
+	show "----------------"
 ]
 
 //Se asigna a la variable a el valor de 11
@@ -46,21 +46,25 @@ c=13
  * el de c es mayor que 12. 
  **/
 if a>10 [
-	imprimir("a es mayor que 10.")
+	show "a es mayor que 10."
 	if b>11 [
-		imprimir("a es mayor que 10 y b es mayor que 11.")
+		show "a es mayor que 10 y b es mayor que 11."
 		if c>12 [
-			imprimir("a es mayor que 10, b es mayor que 11 y c es mayor que 12.")
+			show "a es mayor que 10, b es mayor que 11 y c es mayor que 12."
         ]
 	]
 ] else [
-	imprimir("a es menor o igual que 10.")
+	show "a es menor o igual que 10."
 ]
 
-repeat 2 [ imprimir("FACU.") ]
-repeat 2+2 [ avanzar 50+50 girar_izq a+79 ]
-right 90 avanzar 100 
-right 90 retroceder 100
+repeat 2 [ show "FACU." ]
+repeat 2+2 [ foward 50+50 left a+79 ]
+right 90 foward 100 
+right 90 back 100
 setpos [100 100]
-right 45 avanzar 75 
-right 30 retroceder 50
+right 45 foward 75 
+right 30 back 50
+penup
+foward 75 
+pendown
+right 30 back 50

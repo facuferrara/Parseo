@@ -151,11 +151,11 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
   - [ ] `clearscreen`
   
 - Mostrar:
-  - [ ] `show <exp>`
+  - [x] `show <exp>`
   
 - Subir/Bajar lápiz:
-  - [ ] `pendown`
-  - [ ] `penup`
+  - [x] `pendown`
+  - [x] `penup`
   
 - Ciclos:
   - [x] `repeat <expr> [ comandos... ]`
@@ -163,7 +163,7 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
   
 - Bifurcaciones:
   - [x] `if <expr> [ comandos... ]`
-  - [x] `ifelse <expr> [ comandos... ] [ comandos... ]`
+  - [x] `if <expr> [ comandos... ] else [ comandos... ]`
   
 - Procedimiento:
   - [ ] `to <proc_name> <inputs> <comandos> end`
@@ -183,7 +183,7 @@ Tortuga(600, 600); START AVANZA(100); GIRA_IZQUIERDA(90); AVANZA(50); BAJA_PLUMA
 ## Ejemplo de programa
 
 to cuadrado
-repeat 4 [ forwardright 90 ] end
+repeat 4 [ forward 100 right 90 ] end
 
 clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
 
