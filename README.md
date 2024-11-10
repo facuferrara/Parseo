@@ -6,7 +6,7 @@
 
 **Alumnos:**
 - Ferrara Facundo Matias
-- Origlia Pablo
+- Origlia Pablo Daniel
 
 **Año:** 2024
 
@@ -58,22 +58,19 @@ Después de clonar el proyecto, entra en el directorio del proyecto con el sigui
 ```bash
 cd proyecto
 ```
-
-3. Crear y Configurar los Archivos  
-Una vez en el directorio, puedes proceder a crear los archivos `lexer.py` y `parser.py` con el código que mencioné antes:
-
-- `lexer.py`: Contiene el análisis léxico.
-- `parser.py`: Contiene el análisis sintáctico y el programa principal.
-
-Asegúrate de tener las dependencias necesarias instaladas, como PLY y Tkinter.
-
-4. Instalar Dependencias  
+3. Instalar Dependencias  
 El proyecto utiliza Python y tiene un archivo `requirements.txt`, puedes instalar las dependencias con:
 
+```bash
 pip install -r requirements.txt
+```
 
-5. Ejecutar el Programa  
-Una vez todo esté en su lugar, puedes ejecutar el archivo `parser.py`:
+4. Ejecutar el Programa  
+Una vez todo esté en su lugar, puedes ejecutar el programa:
+
+```bash
+python.exe main.py -f FILENAME
+```
 
 ## Definición del Lenguaje
 
@@ -83,15 +80,15 @@ PYLogo es un lenguaje de programación basado en comandos simples que permite a 
 
 ### Scanner
 
-Se ha implementado un scanner que analiza el código fuente de PYLogo, identificando los diferentes tokens que se utilizan en el lenguaje.
-
-Este archivo se encarga del análisis léxico del lenguaje PYLogo. Define los diferentes tokens que componen el lenguaje, como comandos y identificadores, utilizando la biblioteca PLY para crear un lexer que identifica y clasifica los elementos del código fuente. El lexer ignora espacios y saltos de línea, y genera errores para caracteres no válidos.
+Se ha implementado un scanner que analiza el código fuente de PYLogo, identificando los diferentes tokens que se utilizan en el lenguaje. Para esto en el modulo `gramatica.py` se definen los diferentes tokens que componen el lenguaje, como comandos y identificadores, utilizando la biblioteca `PLY` para crear un lexer que identifica y clasifica los elementos del código fuente. El lexer ignora espacios y saltos de línea, y genera errores para caracteres no válidos.
 
 ### Parser
 
-El parser se encarga de analizar la estructura del código PYLogo, validando que los comandos sigan la gramática definida.
+El parser se encarga de analizar la estructura del código PYLogo, validando que los comandos sigan la gramática definida. Es responsable del análisis sintáctico del lenguaje PYLogo. Utiliza el módulo `gramatica.py` donde está definida la misma y la creación del parser, además cada instrucción esta definida como clase en el módulo `instrucciones.py` adicionalmente dentro del módulo `expresiones.py` se definen las expresiones en forma de clases para ser procesadas por el parse junto con las instrucciones para generar la ejecución del programa fuente dentro de una ventana de `Tkinter`, validando que los comandos en el código fuente cumplan con las reglas sintácticas. El parser organiza las estructuras de los comandos y controla la correcta jerarquía de ejecución de las instrucciones.
 
-El parser es responsable del análisis sintáctico del lenguaje PYLogo. Utiliza la biblioteca PLY para definir la gramática del lenguaje, validando que los comandos en el código fuente cumplan con las reglas sintácticas. El parser organiza las estructuras de los comandos y controla la correcta jerarquía de ejecución de las instrucciones.
+### Tabla de símbolos
+
+Para el manejo de los tipos (en este caso solo NUMERO) y las variables que define el usuario se hace uso de una tabla de símbolos con la que cada clase Instruccion hace uso de la misma para ir reemplazando los simbolos por los valores correspondiente o actualizando dichos valores si corresponde segun la instruccion a interpretar.
 
 ### Main (main.py)
 
@@ -111,11 +108,12 @@ Este trabajo práctico ha permitido comprender mejor los conceptos de diseño e 
 
 ## Versión PYLogo
 
-La versión PYLogo consiste en un conjunto limitado de comandos que incluyen acciones básicas como avanzar (AVANZA), girar (GIRA_IZQUIERDA, GIRA_DERECHA) y controlar el estado del lápiz (LEVANTA_PLUMA, BAJA_PLUMA). Esto permite a los usuarios crear gráficos básicos sin necesidad de comandos avanzados.
+La versión PYLogo consiste en un conjunto limitado de comandos que incluyen acciones básicas como avanzar (`foward`), girar (`left`, `right`) y controlar el estado del lápiz (`penup`, `pendown`). Esto permite a los usuarios crear gráficos básicos sin necesidad de comandos avanzados.
 
 Ejemplo:
 
 ```
+penup
 setpos [600, 600]
 foward 100
 left 90
@@ -123,7 +121,6 @@ foward 50
 pendown
 foward 50
 ```
-
 
 ## Acciones disponibles
 
@@ -190,9 +187,11 @@ foward 50
 
 ## Ejemplo de programa
 
+```
 to cuadrado
 repeat 4 [ forward 100 right 90 ] end
 
 clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
 
 clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
+```
