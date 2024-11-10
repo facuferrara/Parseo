@@ -305,9 +305,7 @@ def p_expresion_logica(t):
 
 
 def p_error(t):
-    print(t)
-    print(f"Error sintáctico en '{t.value}'.")
-
+    print(f"Error sintáctico en '{t.value}'. linea {t.lineno}, columna {t.lexpos}")
 
 parser = yacc.yacc(debug=False, write_tables=False)
 

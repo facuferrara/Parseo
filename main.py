@@ -266,6 +266,7 @@ def procesar_instrucciones(instrucciones, ts):
             procesar_if_else(instr, ts)
         else:
             print('Error: instrucción no válida')
+            break
 
 
 # Parseo de la linea de comando para la utilizacion del script
