@@ -112,3 +112,4 @@ class ExpresionLogica():
         self.exp1 = exp1
         self.exp2 = exp2
         self.operador = operador
+

@@ -24,6 +24,7 @@
   - [Implementación](#implementación)
     - [Scanner](#scanner)
     - [Parser](#parser)
+    - [Tabla de símbolos](#tabla-de-símbolos)
     - [Main (main.py)](#main-mainpy)
     - [Acciones Semánticas](#acciones-semánticas)
   - [Casos de Prueba Automatizados](#casos-de-prueba-automatizados)
