@@ -94,6 +94,22 @@ class ClearScreen(Instruccion):
     """
     def __init__(self):
         pass
+    
+class ShowTurtle(Instruccion):
+    """
+        Esta clase representa la instrucción mostrar_tortuga.
+        La instrucciones no recibe parametros.
+    """
+    def __init__(self):
+        pass
+
+class HideTurtle(Instruccion):
+    """
+        Esta clase representa la instrucción ocultar_tortuga.
+        La instrucciones no recibe parametros.
+    """
+    def __init__(self):
+        pass
 
 class Mientras(Instruccion):
     """
@@ -164,4 +180,3 @@ class IfElse(Instruccion):
         self.exp_logica = exp_logica
         self.instr_if_verdadero = [] if instr_if_verdadero is None else instr_if_verdadero
         self.instr_if_falso = [] if instr_if_falso is None else instr_if_falso
-
