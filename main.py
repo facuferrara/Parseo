@@ -23,6 +23,7 @@ canvas.pack()
 # Variables para la posición inicial de la tortuga
 # Centro del canvas
 x, y = 250, 250
+y_text = 10
 
 # Ángulo inicial (0 grados, hacia la derecha)
 angle = 0
@@ -55,13 +56,10 @@ def retroceder(distancia):
         canvas.update()
     x, y = new_x, new_y
     
-def procesar_setpos(instr, ts):
-    val_x = resolver_expresion_aritmetica(instr.exp_x, ts)
-    val_y = resolver_expresion_aritmetica(instr.exp_y, ts)
-    print(f'> SETPOS a ({val_x}, {val_y})')
-    
+def setpos(x_new, y_new):
     global x, y
-    x, y = val_x, val_y  # Actualiza la posición de la tortuga sin dibujar
+    x, y = x_new, y_new  # Actualiza la posición de la tortuga sin dibujar
+
 
 def girar_izquierda(grados):
     global angle
@@ -81,6 +79,12 @@ def levanta_pluma():
 def baja_pluma():
     global lapiz_abajo
     lapiz_abajo = True
+
+def imprimir_tk(cadena):
+    global y_text
+    textID = canvas.create_text(240,y_text, justify='left', text=cadena)
+    canvas.update()
+    y_text+=10
 
 # Funciones para el procesamiento de las instrucciones
 def procesar_avanzar(instr, ts):
@@ -104,8 +108,15 @@ def procesar_gira_der(instr, ts):
     girar_derecha(val)
 
 def procesar_imprimir(instr, ts):
-    print('> ', resolver_cadena(instr.cad, ts))
+    val = resolver_cadena(instr.cad, ts)
+    print('> ', val)
+    imprimir_tk(val)
 
+def procesar_setpos(instr, ts):
+    val_x = resolver_expresion_aritmetica(instr.exp_x, ts)
+    val_y = resolver_expresion_aritmetica(instr.exp_y, ts)
+    print(f'> SETPOS a ({val_x}, {val_y})')
+    setpos(val_x, val_y)
 
 def procesar_definicion(instr, ts):
     # inicializamos con 0 como valor por defecto
@@ -175,26 +186,6 @@ def resolver_expresion_logica(exp_log, ts):
         return exp1 != exp2
 
 
-# def resolver_expresion_aritmetica(exp_num, ts):
-#     if isinstance(exp_num, ExpresionBinaria):
-#         exp1 = resolver_expresion_aritmetica(exp_num.exp1, ts)
-#         exp2 = resolver_expresion_aritmetica(exp_num.exp2, ts)
-#         if exp_num.operador == OPERACION_ARITMETICA.MAS:
-#             return exp1 + exp2
-#         if exp_num.operador == OPERACION_ARITMETICA.MENOS:
-#             return exp1 - exp2
-#         if exp_num.operador == OPERACION_ARITMETICA.POR:
-#             return exp1 * exp2
-#         if exp_num.operador == OPERACION_ARITMETICA.DIVIDIDO:
-#             return exp1 / exp2
-#     elif isinstance(exp_num, ExpresionNegativo):
-#         exp = resolver_expresion_aritmetica(exp_num.exp, ts)
-#         return exp * -1
-#     elif isinstance(exp_num, ExpresionNumero):
-#         return exp_num.val
-#     elif isinstance(exp_num, ExpresionIdentificador):
-#         return ts.obtener(exp_num.id).valor
-
 def resolver_expresion_aritmetica(exp_num, ts):
     """
     Resuelve una expresión aritmética, que puede ser una expresión binaria,
@@ -241,7 +232,6 @@ def procesar_instrucciones(instrucciones, ts):
     # lista de instrucciones recolectadas
     for instr in instrucciones:
         if isinstance(instr, Avanzar):
-            # instr.show()  # Mostrar el avance
             procesar_avanzar(instr, ts)
         elif isinstance(instr, SetPosicion):
             procesar_setpos(instr, ts)          

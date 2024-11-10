@@ -61,4 +61,6 @@ repeat 2 [ imprimir("FACU.") ]
 repeat 2+2 [ avanzar 50+50 girar_izq a+79 ]
 right 90 avanzar 100 
 right 90 retroceder 100
-setpos [100 200]
+setpos [100 100]
+right 45 avanzar 75 
+right 30 retroceder 50
