@@ -31,10 +31,7 @@ angle = 0
 # Controla si la tortuga está dibujando o no
 lapiz_abajo = True
 
-tabla_procedimientos = {}
-
 # Funciones para el dibujo
-
 
 def avanzar(distancia):
     global x, y, angle, lapiz_abajo
@@ -45,9 +42,6 @@ def avanzar(distancia):
         canvas.create_line(x, y, new_x, new_y)
         canvas.update()
     x, y = new_x, new_y
-    # Actualizacion grafica para el show
-    # canvas.create_text(x, y, text=f"({x}, {y})", fill="black", font=("Helvetica", 8))
-    tortuga_visible = True
      
 def retroceder(distancia):
     global x, y, angle, lapiz_abajo
@@ -80,7 +74,7 @@ def actualizar_pluma(estado):
 
 def imprimir_tk(cadena):
     global y_text
-    textID = canvas.create_text(240,y_text, justify='left', text=cadena)
+    canvas.create_text(240,y_text, justify='left', text=cadena)
     canvas.update()
     y_text+=10
 
@@ -131,17 +125,20 @@ def procesar_setpos(instr, ts):
 
 def procesar_pen(instr, ts):
     actualizar_pluma(instr.state)
-
+    print(f"> PLUMA {instr.state}")
 
 def procesar_home(instr, ts):
     home()
+    print(f"> HOME")
 
 def procesar_clean(instr, ts):
     clean()
-
+    print(f"> CLEAN")
+    
 def procesar_clear_screen(instr, ts):
     clear_screen()
-
+    print(f"> CLEARSCREEN")
+    
 def procesar_definicion(instr, ts):
     # inicializamos con 0 como valor por defecto
     simbolo = TS.Simbolo(instr.id, TS.TIPO_DATO.NUMERO, 0)
