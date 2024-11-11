@@ -1,0 +1,8 @@
+penup
+setpos [100, 100]
+pendown
+foward 100
+right 90
+foward 50
+right 30
+foward 50
