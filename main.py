@@ -251,7 +251,6 @@ def resolver_expresion_aritmetica(exp_num, ts):
 def procesar_instrucciones(instrucciones, ts):
     # lista de instrucciones recolectadas
     for instr in instrucciones:
-        
         if isinstance(instr, Avanzar):
             procesar_avanzar(instr, ts)
         elif isinstance(instr, SetPosicion):
@@ -285,8 +284,8 @@ def procesar_instrucciones(instrucciones, ts):
         elif isinstance(instr, IfElse):
             procesar_if_else(instr, ts)
         else:
-            # print('Error: instrucción no válida')
-            print(f"Error: la siguiente instrucción no es válida: {instr}")
+            print('Error: instrucción no válida')
+            #print(f"Error: la siguiente instrucción no es válida: {instr}")
             break
 
 
@@ -313,6 +312,6 @@ if codigo:
 
     procesar_instrucciones(instrucciones, ts_global)
 
-    # Ejecutar el bucle principal de la ventana Tkinter
-    root.mainloop()
+# Ejecutar el bucle principal de la ventana Tkinter
+root.mainloop()
     
