@@ -97,21 +97,6 @@ def clear_screen():
     clean()
     home()
 
-def mostrar_tortuga():
-    # global tortuga_visible
-    
-    # if not tortuga_visible:
-    #     tortuga_visible = True
-    print("Tortuga mostrada")
-
-def ocultar_tortuga():
-    # global tortuga_visible
-    
-    # if tortuga_visible:
-    #     tortuga_visible = False
-    print("Tortuga oculta")
-
-
 # Funciones para el procesamiento de las instrucciones
 def procesar_avanzar(instr, ts):
     val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
@@ -157,15 +142,6 @@ def procesar_clean(instr, ts):
 def procesar_clear_screen(instr, ts):
     clear_screen()
 
-# Procesamiento de instrucciones (por ejemplo, ShowTurtle y HideTurtle)
-def procesar_show_turtle(instr, ts):
-    # print("> SHOWTURTLE")
-    mostrar_tortuga()
-
-def procesar_hide_turtle(instr, ts):
-    # print("> HIDETURTLE")
-    ocultar_tortuga()
-
 def procesar_definicion(instr, ts):
     # inicializamos con 0 como valor por defecto
     simbolo = TS.Simbolo(instr.id, TS.TIPO_DATO.NUMERO, 0)
@@ -176,8 +152,7 @@ def procesar_asignacion(instr, ts):
     val = resolver_expresion_aritmetica(instr.exp_numerica, ts)
     simbolo = TS.Simbolo(instr.id, TS.TIPO_DATO.NUMERO, val)
     ts.actualizar(simbolo)
-
-
+    
 def procesar_mientras(instr, ts):
     while resolver_expresion_logica(instr.exp_logica, ts):
         ts_local = TS.TablaDeSimbolos(ts.simbolos)
@@ -282,10 +257,6 @@ def procesar_instrucciones(instrucciones, ts):
         
         if isinstance(instr, Avanzar):
             procesar_avanzar(instr, ts)
-        elif isinstance(instr, ShowTurtle):
-            procesar_show_turtle(instr, ts)
-        elif isinstance(instr, HideTurtle):
-            procesar_hide_turtle(instr, ts)
         elif isinstance(instr, SetPosicion):
             procesar_setpos(instr, ts)          
         elif isinstance(instr, SetPen):
@@ -318,7 +289,7 @@ def procesar_instrucciones(instrucciones, ts):
             procesar_if_else(instr, ts)
         else:
             # print('Error: instrucción no válida')
-            print(f"Instrucción no reconocida: {instr_type}")
+            print(f"Error: la siguiente instrucción no es válida: {instr}")
             break
 
 
@@ -340,17 +311,11 @@ if args.file:
 
 if codigo:
     # Utiliza el lexer y el parser para procesar el código
-    
     instrucciones = gram.parse(codigo)
     ts_global = TS.TablaDeSimbolos()
 
-if instrucciones is None:
-    print("Error: el código no fue parseado correctamente")
-else:
-    print("Instrucciones parseadas correctamente")
-    
     procesar_instrucciones(instrucciones, ts_global)
 
     # Ejecutar el bucle principal de la ventana Tkinter
     root.mainloop()
-
+    
