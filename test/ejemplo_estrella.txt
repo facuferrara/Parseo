@@ -1,1 +1,10 @@
+numero a
+penup 
+back 100 
+pendown
 repeat 5 [ foward 100 right 144 ]
+home
+foward 100
+a=0
+while a<5 [ foward 100 right 144 a=a+1]
+home

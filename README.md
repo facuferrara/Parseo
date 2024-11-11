@@ -57,8 +57,15 @@ El lenguaje PYLogo está inspirado en LOGO y está diseñado para enseñar conce
 Después de clonar el proyecto, entra en el directorio del proyecto con el siguiente comando:
 
 ```bash
-cd proyecto
+cd Parseo
 ```
+3. Activar el entorno virtual
+Para poder correr la aplicacion en un entorno que no afecte los modulos instalados en la computadora local y evitar conflicto con las versiones de los diferentes modulos utilizados, se hace uso de un entorno virtual, para activarlo:
+
+```bash
+.venv\Scripts\Activate.ps1
+```
+
 3. Instalar Dependencias  
 El proyecto utiliza Python y tiene un archivo `requirements.txt`, puedes instalar las dependencias con:
 
@@ -67,7 +74,7 @@ pip install -r requirements.txt
 ```
 
 4. Ejecutar el Programa  
-Una vez todo esté en su lugar, puedes ejecutar el programa:
+Una vez todo esté en su lugar, puedes ejecutar el programa con el modificador `-f` o `--file` seguido del nombre del archivo a ejecutar:
 
 ```bash
 python.exe main.py -f FILENAME
@@ -81,31 +88,31 @@ PYLogo es un lenguaje de programación basado en comandos simples que permite a 
 
 ### Scanner
 
-Se ha implementado un scanner que analiza el código fuente de PYLogo, identificando los diferentes tokens que se utilizan en el lenguaje. Para esto en el modulo `gramatica.py` se definen los diferentes tokens que componen el lenguaje, como comandos y identificadores, utilizando la biblioteca `PLY` para crear un lexer que identifica y clasifica los elementos del código fuente. El lexer ignora espacios y saltos de línea, y genera errores para caracteres no válidos.
+Se ha implementado un scanner que analiza el código fuente de PYLogo, identificando los diferentes tokens que se utilizan en el lenguaje. Para esto en el modulo `gramatica.py` se definen los diferentes tokens que componen el lenguaje, como comandos e identificadores, utilizando la biblioteca `PLY` para crear un lexer que identifica y clasifica los elementos del código fuente. El lexer ignora espacios, comentarios y saltos de línea, y genera errores para caracteres no válidos.
 
 ### Parser
 
-El parser se encarga de analizar la estructura del código PYLogo, validando que los comandos sigan la gramática definida. Es responsable del análisis sintáctico del lenguaje PYLogo. Utiliza el módulo `gramatica.py` donde está definida la misma y la creación del parser, además cada instrucción esta definida como clase en el módulo `instrucciones.py` adicionalmente dentro del módulo `expresiones.py` se definen las expresiones en forma de clases para ser procesadas por el parse junto con las instrucciones para generar la ejecución del programa fuente dentro de una ventana de `Tkinter`, validando que los comandos en el código fuente cumplan con las reglas sintácticas. El parser organiza las estructuras de los comandos y controla la correcta jerarquía de ejecución de las instrucciones.
+El parser se encarga de analizar la estructura del código PYLogo, validando que los comandos sigan la gramática definida. Es responsable del análisis sintáctico del lenguaje PYLogo. Utiliza el módulo `gramatica.py` donde está definida la misma y la creación del parser, además cada instrucción esta definida como clase en el módulo `instrucciones.py` adicionalmente dentro del módulo `expresiones.py` se definen las expresiones en forma de clases para ser procesadas por el parse junto con las instrucciones para generar la ejecución del programa fuente dentro de una ventana de `Tkinter`, validando que los comandos en el código fuente cumplan con las reglas sintácticas y semanticas. El parser organiza las estructuras de los comandos y controla la correcta jerarquía de ejecución de las instrucciones.
 
 ### Tabla de símbolos
 
-Para el manejo de los tipos (en este caso solo NUMERO) y las variables que define el usuario se hace uso de una tabla de símbolos con la que cada clase Instruccion hace uso de la misma para ir reemplazando los simbolos por los valores correspondiente o actualizando dichos valores si corresponde segun la instruccion a interpretar.
+Para el manejo de los tipos (en este caso solo NUMERO) y las variables que define el usuario se hace uso de una tabla de símbolos con la que cada clase `Instruccion` hace uso de la misma para ir reemplazando los símbolos por los valores correspondiente o actualizando dichos valores si corresponde según la instruccion a interpretar.
 
 ### Main (main.py)
 
-Este archivo contiene el programa principal que integra el lexer y el parser. Se encarga de recibir el código fuente de PYLogo, pasar el texto a través del lexer para realizar el análisis léxico, y luego utilizar el parser para verificar la estructura y ejecutar las instrucciones correspondientes. Además, puede incluir la inicialización de la interfaz gráfica donde la tortuga ejecuta los comandos y se visualizan los gráficos generados.
+Este archivo contiene el programa principal que integra el lexer y el parser. Se encarga de recibir el código fuente de PYLogo, pasar el texto a través del lexer para realizar el análisis léxico, y luego utilizar el parser para verificar la estructura y ejecutar las instrucciones correspondientes. Además, incluye la inicialización de la interfaz gráfica donde la tortuga ejecuta los comandos y se visualizan los gráficos generados.
 
 ### Acciones Semánticas
 
 Las acciones semánticas se ejecutan durante el proceso de análisis, permitiendo que los comandos tengan un efecto en la "tortuga" y en el entorno gráfico.
 
-## Casos de Prueba Automatizados
+## Casos de Prueba
 
-Se han creado casos de prueba automatizados para validar el correcto funcionamiento del scanner, parser y las acciones semánticas. Esto incluye pruebas unitarias y pruebas de integración.
+Se han creado casos de prueba en la carpeta `test/` para validar el correcto funcionamiento del scanner, parser y las acciones semánticas. Esto incluye pruebas varias y pruebas de los distintos mensajes de error.
 
 ## Conclusiones
 
-Este trabajo práctico ha permitido comprender mejor los conceptos de diseño e implementación de un lenguaje de programación, así como la importancia de un análisis léxico y sintáctico eficaz.
+Este trabajo práctico ha permitido comprender mejor los conceptos de diseño e implementación de un lenguaje de programación básico, así como la importancia de un análisis léxico y sintáctico eficaz para la generacion de código.
 
 ## Versión PYLogo
 
@@ -115,7 +122,7 @@ Ejemplo:
 
 ```
 penup
-setpos [600, 600]
+setpos [100, 100]
 foward 100
 left 90
 foward 50
@@ -135,21 +142,10 @@ foward 50
   
 - Posicionar tortuga:
   - [x] `setpos [<exp> <exp>]`
-  - [ ] `setx <exp>`
-  - [ ] `sety <exp>`
-  
-- Obtener posición tortuga:
-  - [ ] `xcor`
-  - [ ] `ycor`
-  - [ ] `pos`
-  
+    
 - Centrar tortuga:
   - [x] `home`
-  
-- Mostrar/Ocultar tortuga:
-  - [ ] `showturtle`
-  - [ ] `hideturtle`
-  
+    
 - Limpiar pantalla:
   - [x] `clean`
   
@@ -170,29 +166,28 @@ foward 50
 - Bifurcaciones:
   - [x] `if <expr> [ comandos... ]`
   - [x] `if <expr> [ comandos... ] else [ comandos... ]`
-  
-- Procedimiento:
-  - [ ] `to <proc_name> <inputs> <comandos> end`
-  
+    
 - Asignación:
-  - [ ] `name <expr> varname`
-  
-- Referencia:
-  - [ ] `:varname`
-  
-- Listas de palabras o listas, separadas por espacio en blanco:
-  - [ ] `[ word ... ]`
-  
+  - [x] `name = NUMERO`
+    
 - Bloques comandos:
-  - [ ] `[ comandos...]`
+  - [x] `[ comandos...]`
 
 ## Ejemplo de programa
 
 ```
-to cuadrado
-repeat 4 [ forward 100 right 90 ] end
 
-clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
+clearscreen 
+penup 
+forward 50 
+pendown 
+repeat 4 [ forward 100 right 90 ] 
+home 
 
-clearscreen penup forward 300 pendown cuadrado 100 home if xcor < 100 [ hideturtle ] go
+clearscreen 
+penup 
+back 100 
+pendown 
+repeat 4 [ forward 100 right 90 ] 
+home 
 ```

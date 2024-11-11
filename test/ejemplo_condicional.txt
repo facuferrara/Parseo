@@ -1,0 +1,18 @@
+numero lado 
+lado = 0
+while lado < 140 [
+    if lado == 80 [
+        penup
+        foward 100
+        pendown
+    ]
+    if lado < 80 [
+        foward 20
+        right 45
+    ]
+    else [
+        foward 40
+        right 60
+    ]
+    lado = lado + 10 
+]

@@ -1,0 +1,12 @@
+clearscreen 
+penup 
+foward 50 
+pendown 
+repeat 4 [ foward 100 right 90 ] 
+home 
+
+penup 
+back 100 
+pendown 
+repeat 4 [ foward 100 right 90 ] 
+home
